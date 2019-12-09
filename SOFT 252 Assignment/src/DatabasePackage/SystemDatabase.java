@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package soft.pkg252.assignment;
+package DatabasePackage;
 import java.util.ArrayList;
 
 /**
@@ -11,5 +11,5 @@ import java.util.ArrayList;
  * @author afernandez
  */
 public class SystemDatabase {
-    ArrayList<IUser> userArray  = new ArrayList<IUser>(); 
+    public static ArrayList<IUser> userArray  = new ArrayList<IUser>(); 
 }

@@ -5,7 +5,7 @@
  */
 package PatientPackage;
 
-import soft.pkg252.assignment.IUser;
+import DatabasePackage.IUser;
 
 /**
  *
@@ -14,53 +14,20 @@ import soft.pkg252.assignment.IUser;
 public class Patient implements IUser{
     private String userFirstname;
     private String userID;
-    private String userSirname;
+    private String userSurname;
     private String userAddress;
+    String userPassword;
     private int userAge;
     private String userGender;
 
-    @Override
-    public void NewUser(String ID, String firstname, String surname, String address)
-    {
-        
-    }
-    
-     public void NewUser(String ID, String firstname, String surname, 
-             String address, int age, String gender)
-    {
-        
-    }
-    
-    public String getUserFirstname() {
-        return userFirstname;
-    }
-
-    public void setUserFirstname(String userFirstname) {
+    public Patient(String userID, String userFirstname,  String userSirname, String userAddress, String userPassword, int userAge, String userGender) {
         this.userFirstname = userFirstname;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
         this.userID = userID;
-    }
-
-    public String getUserSirname() {
-        return userSirname;
-    }
-
-    public void setUserSirname(String userSirname) {
-        this.userSirname = userSirname;
-    }
-
-    public String getUserAddress() {
-        return userAddress;
-    }
-
-    public void setUserAddress(String userAddress) {
+        this.userSurname = userSirname;
         this.userAddress = userAddress;
+        this.userPassword = userPassword;
+        this.userAge = userAge;
+        this.userGender = userGender;
     }
 
     public int getUserAge() {
@@ -77,6 +44,57 @@ public class Patient implements IUser{
 
     public void setUserGender(String userGender) {
         this.userGender = userGender;
+    }
+
+    
+    
+
+        @Override
+    public String getUserFirstname() {
+        return userFirstname;
+    }
+    
+    @Override
+    public void setUserFirstname(String userFirstname) {
+        this.userFirstname = userFirstname;
+    }
+
+    @Override
+    public String getUserID() {
+        return userID;
+    }
+
+    @Override
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+    @Override
+    public String getUserSurname() {
+        return userSurname;
+    }
+
+    @Override
+    public void setUserSurname(String userSirname) {
+        this.userSurname = userSirname;
+    }
+    
+    @Override
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    @Override
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
+    }
+        @Override
+    public String getUserPassword(){
+        return userPassword;
+    }
+
+    @Override
+    public void setUserPassword(String userPassword){
+        this.userPassword = userPassword;
     }
     
 }

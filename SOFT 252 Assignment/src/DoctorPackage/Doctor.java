@@ -5,7 +5,7 @@
  */
 package DoctorPackage;
 
-import soft.pkg252.assignment.IUser;
+import DatabasePackage.IUser;
 
 /**
  *
@@ -16,44 +16,62 @@ public class Doctor implements IUser {
     private String userID;
     private String userSirname;
     private String userAddress;    
+    private String userPassword;
 
-        @Override
-    public void NewUser(String ID, String firstname, String surname, String address)
-    {
-        
+    public Doctor(String userID, String userFirstname,  String userSirname, String userAddress, String userPassword) {
+        this.userFirstname = userFirstname;
+        this.userID = userID;
+        this.userSirname = userSirname;
+        this.userAddress = userAddress;
+        this.userPassword = userPassword;
     }
-    
+ 
+        @Override
     public String getUserFirstname() {
         return userFirstname;
     }
-
+    
+    @Override
     public void setUserFirstname(String userFirstname) {
         this.userFirstname = userFirstname;
     }
 
+    @Override
     public String getUserID() {
         return userID;
     }
 
+    @Override
     public void setUserID(String userID) {
         this.userID = userID;
     }
-
-    public String getUserSirname() {
+    @Override
+    public String getUserSurname() {
         return userSirname;
     }
 
-    public void setUserSirname(String userSirname) {
+    @Override
+    public void setUserSurname(String userSirname) {
         this.userSirname = userSirname;
     }
-
+    
+    @Override
     public String getUserAddress() {
         return userAddress;
     }
 
+    @Override
     public void setUserAddress(String userAddress) {
         this.userAddress = userAddress;
     }
+    @Override
+    public String getUserPassword(){
+        return userPassword;
+    }
 
+    @Override
+    public void setUserPassword(String userPassword){
+        this.userPassword = userPassword;
+    }
     
 }
