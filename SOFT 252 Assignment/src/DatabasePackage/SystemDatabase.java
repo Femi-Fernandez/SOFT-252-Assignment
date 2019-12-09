@@ -18,13 +18,16 @@ public class SystemDatabase implements DatabaseControl {
     public static ArrayList<AccountRequest> accountRequests = new ArrayList<AccountRequest>();
     
     static JSONObject userDatabaseSave = new JSONObject();
+    static JSONObject accountRequestSave = new JSONObject();
     
     public static void SaveUserArray(){ 
         userDatabaseSave.put("user Database", SystemDatabase.userArray);
+        accountRequestSave.put("Account requests", SystemDatabase.accountRequests);
     }
     
     public static void ReadUserArray(){
     SystemDatabase.userArray = (ArrayList<IUser>) userDatabaseSave.get("user Database");
+    SystemDatabase.accountRequests = (ArrayList<AccountRequest>) accountRequestSave.get("Account requests");
     }
     
     @Override
