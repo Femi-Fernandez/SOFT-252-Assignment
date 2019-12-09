@@ -70,7 +70,7 @@ public class CreateNewUser extends javax.swing.JFrame {
 
         TxtID.setText("jTextField4");
 
-        BtnCreateNewUser.setText("jButton1");
+        BtnCreateNewUser.setText("Create new user");
         BtnCreateNewUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCreateNewUserActionPerformed(evt);
@@ -206,7 +206,10 @@ public class CreateNewUser extends javax.swing.JFrame {
 
     private void BtnShowUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnShowUserActionPerformed
         // TODO add your handling code here:
-        System.out.println(SystemDatabase.userArray.get(0).getUserID()); 
+        System.out.println(SystemDatabase.userArray.get(0).getUserID());
+        System.out.println(SystemDatabase.userArray.get(0).getUserFirstname());
+        System.out.println(SystemDatabase.userArray.get(0).getUserSurname());
+        System.out.println(SystemDatabase.userArray.get(0).getUserAddress());
     }//GEN-LAST:event_BtnShowUserActionPerformed
 
     private void BtnTempJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTempJSONActionPerformed
