@@ -35,7 +35,7 @@ public class UserFactory {
         if (firstChar == 'S') {
             Secretary newSecretary = new Secretary(userID, firstname,  surname, address, password);
             SystemDatabase.userArray.add(newSecretary);
-            System.out.println("added to array!");
+            //System.out.println("added to array!");
         }
         else{
         

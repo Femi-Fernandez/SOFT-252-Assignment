@@ -6,6 +6,7 @@
 package GUI;
 
 import DatabasePackage.SystemDatabase;
+import static DatabasePackage.SystemDatabase.SaveUserArray;
 import DatabasePackage.UserFactory;
 
 /**
@@ -48,7 +49,7 @@ public class CreateNewUser extends javax.swing.JFrame {
         BtnShowUser = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         TxtPassword = new javax.swing.JTextField();
-        BtnTempJSON = new javax.swing.JButton();
+        BtnSaveTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,10 +97,10 @@ public class CreateNewUser extends javax.swing.JFrame {
 
         TxtPassword.setText("jTextField3");
 
-        BtnTempJSON.setText("jButton1");
-        BtnTempJSON.addActionListener(new java.awt.event.ActionListener() {
+        BtnSaveTest.setText("Save to text");
+        BtnSaveTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTempJSONActionPerformed(evt);
+                BtnSaveTestActionPerformed(evt);
             }
         });
 
@@ -140,8 +141,8 @@ public class CreateNewUser extends javax.swing.JFrame {
                             .addComponent(TxtAddress)
                             .addComponent(TxtPassword))))
                 .addGap(50, 50, 50)
-                .addComponent(BtnTempJSON)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addComponent(BtnSaveTest)
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +161,7 @@ public class CreateNewUser extends javax.swing.JFrame {
                             .addComponent(TxtSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(64, 64, 64)
-                        .addComponent(BtnTempJSON)))
+                        .addComponent(BtnSaveTest)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,10 +213,10 @@ public class CreateNewUser extends javax.swing.JFrame {
         System.out.println(SystemDatabase.userArray.get(0).getUserAddress());
     }//GEN-LAST:event_BtnShowUserActionPerformed
 
-    private void BtnTempJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTempJSONActionPerformed
+    private void BtnSaveTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaveTestActionPerformed
         // TODO add your handling code here:
-
-    }//GEN-LAST:event_BtnTempJSONActionPerformed
+         SaveUserArray();
+    }//GEN-LAST:event_BtnSaveTestActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,8 +255,8 @@ public class CreateNewUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCreateNewUser;
+    private javax.swing.JButton BtnSaveTest;
     private javax.swing.JButton BtnShowUser;
-    private javax.swing.JButton BtnTempJSON;
     private javax.swing.JTextField TxtAddress;
     private javax.swing.JTextField TxtAge;
     private javax.swing.JTextField TxtFirstname;
