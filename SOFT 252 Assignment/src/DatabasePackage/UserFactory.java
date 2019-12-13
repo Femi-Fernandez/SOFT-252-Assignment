@@ -16,7 +16,7 @@ import SecretaryPackage.Secretary;
 public class UserFactory {
     
     public static void getUserType(String userID, String firstname, String surname, 
-            String address, String password, int age, String gender){
+            String address, String password, String age, String gender){
         
     char firstChar = userID.charAt(0);
     

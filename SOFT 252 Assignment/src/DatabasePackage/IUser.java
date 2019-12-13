@@ -15,17 +15,24 @@ public interface IUser {
     String userSurname = "";
     String userAddress = "";
     String userPassword = "";
+    String userGender = "";
+    String userAge = "";
+    boolean isPatient = false;
     
     public String getUserID();
     public String getUserFirstname();
     public String getUserSurname();
     public String getUserAddress();
     public String getUserPassword();
+    public String getUserGender();
+    public String getUserAge();
     
     public void setUserID(String ID);
     public void setUserFirstname(String firstname);
     public void setUserSurname(String surname);
     public void setUserAddress(String address);
     public void setUserPassword(String password);
+    public void setUserGender(String gender);
+    public void setUserAge(String age);
      
 }

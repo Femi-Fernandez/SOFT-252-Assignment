@@ -17,6 +17,10 @@ public class Admin implements IUser {
     private String userSirname;
     private String userAddress; 
     private String userPassword;
+    
+    private String userGender;
+    private String userAge;
+    private boolean isPatient = false;
 
     public Admin(String userID, String userFirstname,  String userSirname, String userAddress, String userPassword) {
         this.userFirstname = userFirstname;
@@ -26,6 +30,15 @@ public class Admin implements IUser {
         this.userPassword = userPassword;
     }
 
+    @Override
+    public String getUserGender(){return null;}
+    @Override
+    public String getUserAge(){return null;}
+    @Override
+    public void setUserGender(String gender){}
+    @Override
+    public void setUserAge(String age){}
+    
 
     
         @Override

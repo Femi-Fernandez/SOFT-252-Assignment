@@ -6,7 +6,9 @@
 package GUI;
 
 import DatabasePackage.SystemDatabase;
-import static DatabasePackage.SystemDatabase.SaveUserArray;
+//import static DatabasePackage.SystemDatabase.ReadUserArray;
+//import static DatabasePackage.SystemDatabase.SaveUserArray;
+import static DatabasePackage.SystemDatabase.*;
 import DatabasePackage.UserFactory;
 
 /**
@@ -50,6 +52,7 @@ public class CreateNewUser extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         TxtPassword = new javax.swing.JTextField();
         BtnSaveTest = new javax.swing.JButton();
+        BtnReadTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +107,13 @@ public class CreateNewUser extends javax.swing.JFrame {
             }
         });
 
+        BtnReadTest.setText("Read from text");
+        BtnReadTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnReadTestActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,28 +150,27 @@ public class CreateNewUser extends javax.swing.JFrame {
                             .addComponent(TxtSurname)
                             .addComponent(TxtAddress)
                             .addComponent(TxtPassword))))
-                .addGap(50, 50, 50)
-                .addComponent(BtnSaveTest)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnSaveTest)
+                    .addComponent(BtnReadTest))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addComponent(BtnSaveTest)))
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnSaveTest))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnReadTest))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,10 +208,11 @@ public class CreateNewUser extends javax.swing.JFrame {
         String tempAddress = TxtAddress.getText();
         String tempPassword =TxtPassword.getText();
         String tempID = TxtID.getText();
-        int tempAge = Integer.parseInt(TxtAge.getText());
+        String tempAge = TxtAge.getText();
         String tempGender = TxtGender.getText();
         
         UserFactory.getUserType(tempID, tempFirstname, tempSirname, tempAddress, tempPassword,  tempAge, tempGender );
+        System.out.println("new user created");
     }//GEN-LAST:event_BtnCreateNewUserActionPerformed
 
     private void BtnShowUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnShowUserActionPerformed
@@ -211,12 +221,21 @@ public class CreateNewUser extends javax.swing.JFrame {
         System.out.println(SystemDatabase.userArray.get(0).getUserFirstname());
         System.out.println(SystemDatabase.userArray.get(0).getUserSurname());
         System.out.println(SystemDatabase.userArray.get(0).getUserAddress());
+        if (SystemDatabase.userArray.get(0).getUserID().charAt(0) == 'P') {
+            System.out.println(SystemDatabase.userArray.get(0).getUserAge());
+            System.out.println(SystemDatabase.userArray.get(0).getUserGender());
+        }
     }//GEN-LAST:event_BtnShowUserActionPerformed
 
     private void BtnSaveTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSaveTestActionPerformed
         // TODO add your handling code here:
          SaveUserArray();
     }//GEN-LAST:event_BtnSaveTestActionPerformed
+
+    private void BtnReadTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnReadTestActionPerformed
+        // TODO add your handling code here:
+        ReadUserArray();
+    }//GEN-LAST:event_BtnReadTestActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,6 +274,7 @@ public class CreateNewUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCreateNewUser;
+    private javax.swing.JButton BtnReadTest;
     private javax.swing.JButton BtnSaveTest;
     private javax.swing.JButton BtnShowUser;
     private javax.swing.JTextField TxtAddress;

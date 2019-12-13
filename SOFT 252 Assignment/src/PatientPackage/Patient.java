@@ -16,11 +16,11 @@ public class Patient implements IUser{
     private String userID;
     private String userSurname;
     private String userAddress;
-    String userPassword;
-    private int userAge;
+    private String userPassword;
+    private String userAge;
     private String userGender;
 
-    public Patient(String userID, String userFirstname,  String userSirname, String userAddress, String userPassword, int userAge, String userGender) {
+    public Patient(String userID, String userFirstname,  String userSirname, String userAddress, String userPassword, String userAge, String userGender) {
         this.userFirstname = userFirstname;
         this.userID = userID;
         this.userSurname = userSirname;
@@ -30,18 +30,22 @@ public class Patient implements IUser{
         this.userGender = userGender;
     }
 
-    public int getUserAge() {
+    @Override
+    public String getUserAge() {
         return userAge;
     }
-
-    public void setUserAge(int userAge) {
+    
+    @Override
+    public void setUserAge(String userAge) {
         this.userAge = userAge;
     }
-
+    
+    @Override
     public String getUserGender() {
         return userGender;
     }
 
+    @Override
     public void setUserGender(String userGender) {
         this.userGender = userGender;
     }

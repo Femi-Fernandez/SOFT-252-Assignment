@@ -1,1 +1,1 @@
-{"user Database":[SecretaryPackage.Secretary@38194063]}
+[{"firstName":"jTextField1","password":"jTextField3","address":"jTextField3","gender":"jTextField4","surname":"jTextField2","ID":"P0001","age":"45"},{"firstName":"jTextField1","password":"jTextField3","address":"jTextField3","gender":"jTextField4","surname":"jTextField2","ID":"P0002","age":"100"}]

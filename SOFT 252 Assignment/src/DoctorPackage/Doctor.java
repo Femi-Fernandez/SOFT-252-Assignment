@@ -18,6 +18,10 @@ public class Doctor implements IUser {
     private String userAddress;    
     private String userPassword;
 
+    private String userGender;
+    private String userAge;
+    private boolean isPatient = false;
+    
     public Doctor(String userID, String userFirstname,  String userSirname, String userAddress, String userPassword) {
         this.userFirstname = userFirstname;
         this.userID = userID;
@@ -25,6 +29,15 @@ public class Doctor implements IUser {
         this.userAddress = userAddress;
         this.userPassword = userPassword;
     }
+    
+        @Override
+    public String getUserGender(){return null;}
+    @Override
+    public String getUserAge(){return null;}
+    @Override
+    public void setUserGender(String gender){}
+    @Override
+    public void setUserAge(String age){}
  
         @Override
     public String getUserFirstname() {
