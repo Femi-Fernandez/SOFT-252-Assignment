@@ -1,1 +1,1 @@
-[{"firstname":"James","password":"JS12321","address":"House 001","surname":"Smith","ID":"A0001"},{"firstname":"Bob","password":"BA001","address":"House 001","gender":"Male","surname":"Adams","ID":"P0001","age":"32"},{"firstname":"Benjamin","password":"BF100","address":"Witehouse","surname":"Franklin","ID":"S0002"}]
+[{"firstname":"jTextField1","password":"jTextField3","address":"jTextField3","surname":"jTextField2","ID":"A0001"}]

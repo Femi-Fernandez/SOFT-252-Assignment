@@ -143,10 +143,10 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
         String tempPassword = TxtPassword.getText();
         
         if (userType == 0) {
-            UserFactory.getUserType("D" + String.format("%04d", SystemDatabase.userArray.size()), tempFirstname, tempSurname, tempAddress, tempPassword, "", "");
+            UserFactory.getUserType("D", tempFirstname, tempSurname, tempAddress, tempPassword, "", "");
         }
         if (userType == 1) {
-            UserFactory.getUserType("S" + String.format("%04d", SystemDatabase.userArray.size()), tempFirstname, tempSurname, tempAddress, tempPassword, "", "");
+            UserFactory.getUserType("S", tempFirstname, tempSurname, tempAddress, tempPassword, "", "");
         }
         showMessageDialog(null, "Account Created");
         new AdminHome(currentUserID).setVisible(true);

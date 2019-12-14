@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import DatabasePackage.IUser;
 import DatabasePackage.SystemDatabase;
 //import static DatabasePackage.SystemDatabase.ReadUserArray;
 //import static DatabasePackage.SystemDatabase.SaveUserArray;
@@ -210,9 +211,21 @@ public class CreateNewUser extends javax.swing.JFrame {
         String tempID = TxtID.getText();
         String tempAge = TxtAge.getText();
         String tempGender = TxtGender.getText();
+        boolean IDExists = false;
         
-        UserFactory.getUserType(tempID + String.format("%04d", SystemDatabase.userArray.size()), tempFirstname, tempSirname, tempAddress, tempPassword,  tempAge, tempGender );
-        System.out.println("new user created");
+        for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
+             if (SystemDatabase.userArray.get(i).getUserID().equals(tempID)) {
+                System.out.println("Already exists");
+                IDExists = true;
+                break;
+            }     
+        }
+        if (IDExists != true) {
+            UserFactory.getUserType(tempID, tempFirstname, tempSirname, tempAddress, tempPassword,  tempAge, tempGender );
+            System.out.println("new user created");
+        }
+        IDExists = false;
+        
     }//GEN-LAST:event_BtnCreateNewUserActionPerformed
 
     private void BtnShowUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnShowUserActionPerformed
