@@ -211,6 +211,7 @@ public class CreateNewUser extends javax.swing.JFrame {
         String tempID = TxtID.getText();
         String tempAge = TxtAge.getText();
         String tempGender = TxtGender.getText();
+        
         boolean IDExists = false;
         
         for (int i = 0; i < SystemDatabase.userArray.size(); i++) {

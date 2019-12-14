@@ -46,6 +46,8 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
         TxtAddress = new javax.swing.JTextField();
         TxtPassword = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        TxtUserID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,6 +75,8 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("UserID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,14 +95,17 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel7))
                         .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(CombUserType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TxtFirstname)
-                            .addComponent(TxtSurname)
-                            .addComponent(TxtAddress)
-                            .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(CombUserType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(TxtFirstname)
+                                .addComponent(TxtSurname)
+                                .addComponent(TxtAddress)
+                                .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
@@ -126,9 +133,13 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(TxtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -141,16 +152,39 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
         String tempSurname = TxtSurname.getText();
         String tempAddress = TxtAddress.getText();
         String tempPassword = TxtPassword.getText();
+        String tempID = TxtUserID.getText();
         
-        if (userType == 0) {
-            UserFactory.getUserType("D", tempFirstname, tempSurname, tempAddress, tempPassword, "", "");
+        boolean IDExists = false;
+        
+        for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
+             if (SystemDatabase.userArray.get(i).getUserID().equals(tempID)) {
+                System.out.println("Already exists");
+                IDExists = true;
+                break;
+            }     
         }
-        if (userType == 1) {
-            UserFactory.getUserType("S", tempFirstname, tempSurname, tempAddress, tempPassword, "", "");
+        if (IDExists != true) {
+                if (userType == 0) {
+                    UserFactory.getUserType(tempID, tempFirstname, tempSurname, tempAddress, tempPassword, "", "");
+                    showMessageDialog(null, "Account Created");
+                    new AdminHome(currentUserID).setVisible(true);
+                    this.dispose();
+            }
+                if (userType == 1) {
+                    UserFactory.getUserType(tempID, tempFirstname, tempSurname, tempAddress, tempPassword, "", "");
+                    showMessageDialog(null, "Account Created");
+                    new AdminHome(currentUserID).setVisible(true);
+                    this.dispose();
+            }
+            //System.out.println("new user created");
         }
-        showMessageDialog(null, "Account Created");
-        new AdminHome(currentUserID).setVisible(true);
-        this.dispose();
+        if (IDExists = true) {
+            showMessageDialog(null, "Account already exists");
+        }
+        
+        IDExists = false;
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -195,6 +229,7 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
     private javax.swing.JTextField TxtFirstname;
     private javax.swing.JTextField TxtPassword;
     private javax.swing.JTextField TxtSurname;
+    private javax.swing.JTextField TxtUserID;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -202,5 +237,6 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

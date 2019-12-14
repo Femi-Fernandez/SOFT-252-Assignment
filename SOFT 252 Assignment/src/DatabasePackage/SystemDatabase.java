@@ -164,7 +164,7 @@ public class SystemDatabase {
         return null;
     }
     
-    public void RemoveUser(String userID){
+    public static void RemoveUser(String userID){
         userArray.remove(FindUser(userID));     
     }
     
