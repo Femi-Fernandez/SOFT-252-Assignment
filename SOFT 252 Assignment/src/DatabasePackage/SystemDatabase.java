@@ -20,7 +20,7 @@ import org.json.simple.parser.JSONParser;
  *
  * @author afernandez
  */
-public class SystemDatabase implements DatabaseControl {
+public class SystemDatabase {
     
     public static ArrayList<IUser> userArray  = new ArrayList<IUser>();
     public static ArrayList<AccountRequest> accountRequests = new ArrayList<AccountRequest>();
@@ -153,8 +153,8 @@ public class SystemDatabase implements DatabaseControl {
         }      
     }
     
-    @Override
-    public IUser FindUser(String userID)
+    
+    public static IUser FindUser(String userID)
     {
         for (int i = 0; i <= SystemDatabase.userArray.size(); i++) {
             if (userArray.get(i).getUserID().equals(userID)) {
@@ -163,12 +163,12 @@ public class SystemDatabase implements DatabaseControl {
         }
         return null;
     }
-    @Override
+    
     public void RemoveUser(String userID){
         userArray.remove(FindUser(userID));     
     }
     
-    @Override
+    
     public IUser FindSecretary()
     {
     for (int i = 0; i <= SystemDatabase.userArray.size(); i++) {

@@ -6,6 +6,7 @@
 package DatabasePackage;
 
 import AdminPackage.Admin;
+import static DatabasePackage.SystemDatabase.*;
 import PatientPackage.Patient;
 import DoctorPackage.Doctor;
 import SecretaryPackage.Secretary;
@@ -40,6 +41,7 @@ public class UserFactory {
         else{
         
         }
+        SaveUserArray();
         
     }
     

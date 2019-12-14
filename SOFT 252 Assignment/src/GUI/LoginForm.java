@@ -6,6 +6,7 @@
 package GUI;
 
 import DatabasePackage.SystemDatabase;
+import GUI.Adminforms.AdminHome;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
@@ -106,11 +107,27 @@ public class LoginForm extends javax.swing.JFrame {
             if (tempUserID.equals(SystemDatabase.userArray.get(i).getUserID())) {
                 if (tempPassword.equals(SystemDatabase.userArray.get(i).getUserPassword())) {
                     //LOGIN TO CORRECT FORM
+                    String userID = SystemDatabase.userArray.get(i).getUserID();
+                    char firstChar = userID.charAt(0);
+                    
+                    if (firstChar =='A') {
+                        new AdminHome(userID).setVisible(true);
+                        this.dispose();
+                    }
+                    if (firstChar =='D') {
+                        
+                    }
+                    if (firstChar =='P') {
+                        
+                    }
+                    if (firstChar =='S') {
+                        
+                    }
                 }
             }//System.out.println( jsonUser);
         }
 
-        showMessageDialog(null, "Incorrect password, please try again.");
+        showMessageDialog(null, "Incorrect Details, please try again.");
 
         
         

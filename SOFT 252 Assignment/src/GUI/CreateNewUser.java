@@ -211,7 +211,7 @@ public class CreateNewUser extends javax.swing.JFrame {
         String tempAge = TxtAge.getText();
         String tempGender = TxtGender.getText();
         
-        UserFactory.getUserType(tempID, tempFirstname, tempSirname, tempAddress, tempPassword,  tempAge, tempGender );
+        UserFactory.getUserType(tempID + String.format("%04d", SystemDatabase.userArray.size()), tempFirstname, tempSirname, tempAddress, tempPassword,  tempAge, tempGender );
         System.out.println("new user created");
     }//GEN-LAST:event_BtnCreateNewUserActionPerformed
 
