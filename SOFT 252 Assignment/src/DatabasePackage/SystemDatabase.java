@@ -29,6 +29,7 @@ public class SystemDatabase implements DatabaseControl {
     static JSONObject accountRequestSave = new JSONObject();
     
     static File userArraytext = new File("src/Storage/userArray.txt");
+    static File accountRequestText = new File("src/Storage/accountRequestArray.txt");
 
     
     public static void SaveUserArray(){ 
@@ -79,17 +80,17 @@ public class SystemDatabase implements DatabaseControl {
                     String age = "";
                     String gender = "";
                     
-                    System.out.print("here1");
+                    //System.out.print("here1");
                     if (id.charAt(0) == 'P')
                     {
                       age =  String.valueOf((String) temp.get("age"));  
                       gender =  String.valueOf((String) temp.get("gender"));  
                         
-                        System.out.print("here2");
+                        //System.out.print("here2");
                     }
                     
                     UserFactory.getUserType(id, firstname, surname, address, password, age, gender);
-                    System.out.print("here3");
+                    //System.out.print("here3");
                 }
             }
             
@@ -100,22 +101,56 @@ public class SystemDatabase implements DatabaseControl {
     
     public static void SaveAccountRequests()
     {
-        accountRequestSave.put("Account requests", SystemDatabase.accountRequests);
-        
-        try {
-            FileWriter file = new FileWriter(new File("src/Storage/accountRequestArray.txt").getAbsolutePath());
-            file.write(accountRequestSave.toJSONString());
-            file.close();
-            System.out.println("Saved Account request array!");
+        JSONArray jsonAccReq = new JSONArray();
+        for (int i = 0; i < accountRequests.size(); i++) {
             
-        } catch (IOException ex) {
+            JSONObject obj = new JSONObject();
+            //obj.put("ID", userArray.get(i).getUserID());
+            obj.put("firstname", accountRequests.get(i).getFirstname());
+            obj.put("surname", accountRequests.get(i).getSurname());
+            obj.put("address",  accountRequests.get(i).getAddress());
+            obj.put("password",  accountRequests.get(i).getPassword());
+            obj.put("age",  accountRequests.get(i).getAge());
+            obj.put("gender", accountRequests.get(i).getGender());
+
+             jsonAccReq.add(i, obj);
+        }
+        
+        try (FileWriter file = new FileWriter(accountRequestText.getAbsolutePath())) {
+			file.write(jsonAccReq.toJSONString());
+			
+			//System.out.println( jsonUser);
+		} catch (IOException ex) {
             Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public static void ReadAccountRequestArray()
     {
-    SystemDatabase.accountRequests = (ArrayList<AccountRequest>) accountRequestSave.get("Account requests");
+        JSONParser parser = new JSONParser();     
+        try
+        {
+            JSONArray obj = (JSONArray) parser.parse(new FileReader("src/Storage/accountRequestArray.txt"));          
+            if (obj != null) {
+                
+                for (int i = 0; i < obj.size(); i++) {
+                    JSONObject temp = (JSONObject) obj.get(i);
+                    
+                    String firstname =  (String) temp.get("firstname");
+                    String surname =  (String) temp.get("surname");
+                    String address =  (String) temp.get("address");
+                    String password = (String) temp.get("password");
+                    String age =  (String) temp.get("age");  
+                    String gender =  (String) temp.get("gender");
+                    AccountRequest newAccountRequest = new AccountRequest(firstname, surname, address, password, age, gender);
+                    SystemDatabase.accountRequests.add(newAccountRequest);
+                }
+            }
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }      
     }
     
     @Override

@@ -15,10 +15,10 @@ public class AccountRequest {
     private String surname;
     private String address;
     private String password;
-    private int age;
+    private String age;
     private String gender;
 
-    public AccountRequest(String firstname, String surname, String address, String password, int age, String gender) {
+    public AccountRequest(String firstname, String surname, String address, String password, String age, String gender) {
         this.firstname = firstname;
         this.surname = surname;
         this.address = address;
@@ -59,11 +59,11 @@ public class AccountRequest {
         this.password = password;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
