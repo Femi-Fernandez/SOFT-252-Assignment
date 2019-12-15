@@ -16,12 +16,21 @@ public class AdminHome extends javax.swing.JFrame {
     /**
      * Creates new form AdminHome
      */
+    private static AdminHome obj = null;
+    
     static String currentUserID;
     public AdminHome(String userID) {
         initComponents();
-        this.currentUserID = userID;
+        AdminHome.currentUserID = userID;
         LblTitle.setText("Welcome, " + SystemDatabase.FindUser(currentUserID).getUserFirstname());
         //LblTitle.setText("Welcome, " + SystemDatabase.FindUser(currentUserID));
+    }
+    
+        public static AdminHome getObj()
+    {
+        if (obj == null) {
+            obj = new AdminHome(currentUserID);
+        } return obj;
     }
     //public AdminHome(String userID)
     //{

@@ -7,6 +7,8 @@ package GUI;
 
 import DatabasePackage.SystemDatabase;
 import GUI.Adminforms.AdminHome;
+import GUI.DoctorForms.DoctorHome;
+import GUI.PatientForms.PatientHome;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
@@ -115,10 +117,12 @@ public class LoginForm extends javax.swing.JFrame {
                         this.dispose();
                     }
                     if (firstChar =='D') {
-                        
+                        new DoctorHome().setVisible(true);
+                        this.dispose();
                     }
                     if (firstChar =='P') {
-                        
+                        new PatientHome(userID).getObj().setVisible(true);
+                        this.dispose();
                     }
                     if (firstChar =='S') {
                         
@@ -127,10 +131,7 @@ public class LoginForm extends javax.swing.JFrame {
             }//System.out.println( jsonUser);
         }
 
-        showMessageDialog(null, "Incorrect Details, please try again.");
-
-        
-        
+        //showMessageDialog(null, "Incorrect Details, please try again.");   
     }//GEN-LAST:event_BtnLoginCheckActionPerformed
 
     /**

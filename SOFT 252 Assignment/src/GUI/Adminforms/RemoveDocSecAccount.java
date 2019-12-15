@@ -30,7 +30,7 @@ public class RemoveDocSecAccount extends javax.swing.JFrame {
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
                 if ((SystemDatabase.userArray.get(i).getUserID().charAt(0) == 'S') || (SystemDatabase.userArray.get(i).getUserID().charAt(0) == 'D') ) {
-                a.add(SystemDatabase.userArray.get(i).getUserID() + ", " + SystemDatabase.userArray.get(i).getUserFirstname());
+                a.add(SystemDatabase.userArray.get(i).getUserID());
             }
         }
         

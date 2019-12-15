@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package DatabasePackage;
+import PatientPackage.Patient;
 import SystemPackage.AccountRequest;
 import SystemPackage.Appointment;
 import SystemPackage.DoctorFeedback;
@@ -31,6 +32,7 @@ public class SystemDatabase {
     public static ArrayList<Appointment> appointmentArray = new ArrayList<Appointment>();
     public static ArrayList<Prescription> prescriptionArray = new ArrayList<Prescription>();
     public static ArrayList<Medicine> medicineArray = new ArrayList<Medicine>();
+    public static ArrayList<IUser> patientDeleteRequest = new ArrayList<IUser>();
     
     static File userArraytext = new File("src/Storage/userArray.txt");
     static File accountRequestText = new File("src/Storage/accountRequestArray.txt");
@@ -38,6 +40,7 @@ public class SystemDatabase {
     static File appointmentText = new File("src/Storage/appointmentArray.txt");
     static File prescriptionText = new File("src/Storage/prescriptionArray.txt");
     static File medicineText = new File("src/Storage/medicineArray.txt");
+    static File patientDeletionText = new File("src/Storage/patientDeleteArray.txt");
     
     public static void SaveUserArray(){ 
         JSONArray jsonUser = new JSONArray();
@@ -73,7 +76,7 @@ public class SystemDatabase {
         JSONParser parser = new JSONParser();
         try {
             
-            JSONArray obj = (JSONArray) parser.parse(new FileReader("src/Storage/userArray.txt"));
+            JSONArray obj = (JSONArray) parser.parse(new FileReader(userArraytext.getAbsolutePath()));
             //System.out.print(obj);
             if (obj != null) {
                 for (int i = 0; i < obj.size(); i++) {
@@ -377,6 +380,62 @@ public class SystemDatabase {
             Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
         }  
 
+    }
+    
+    public static void saveDeleteRequestArray()
+    {JSONArray jsonDeleteRequest = new JSONArray();
+        for (int i = 0; i < userArray.size(); i++) {
+            
+            JSONObject obj = new JSONObject();
+            obj.put("ID", userArray.get(i).getUserID());
+            obj.put("firstname", userArray.get(i).getUserFirstname());
+            obj.put("surname", userArray.get(i).getUserSurname());
+            obj.put("address",  userArray.get(i).getUserAddress());
+            obj.put("password",  userArray.get(i).getUserPassword());
+            obj.put("age",  userArray.get(i).getUserAge());
+            obj.put("gender", userArray.get(i).getUserGender());
+
+             jsonDeleteRequest.add(i, obj);
+        }
+        
+        try (FileWriter file = new FileWriter(patientDeletionText.getAbsolutePath())) {
+			file.write(jsonDeleteRequest.toJSONString());
+			
+			//System.out.println( jsonUser);
+		} catch (IOException ex) {
+            Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
+    public static void readDeleteRequestArray()
+    {
+    JSONParser parser = new JSONParser();
+        try {
+            
+            JSONArray obj = (JSONArray) parser.parse(new FileReader(patientDeletionText.getAbsolutePath()));
+            //System.out.print(obj);
+            if (obj != null) {
+                for (int i = 0; i < obj.size(); i++) {
+                    JSONObject temp = (JSONObject) obj.get(i);
+                    
+                    String id =  String.valueOf((String) temp.get("ID"));
+                    String firstname =  String.valueOf((String) temp.get("firstname"));
+                    String surname =  String.valueOf((String) temp.get("surname"));
+                    String address =  String.valueOf((String) temp.get("address"));
+                    String password =  String.valueOf((String) temp.get("password"));
+                    String age = String.valueOf((String) temp.get("age"));  
+                    String gender = String.valueOf((String) temp.get("gender"));  
+                                
+                    Patient tempPatient = new Patient(id, firstname, surname, address, password, age, gender);
+                    patientDeleteRequest.add(tempPatient);
+
+                }
+            }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public static IUser FindUser(String userID)

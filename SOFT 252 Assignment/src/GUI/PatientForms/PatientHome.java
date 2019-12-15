@@ -5,6 +5,8 @@
  */
 package GUI.PatientForms;
 
+import DatabasePackage.SystemDatabase;
+
 /**
  *
  * @author afernandez
@@ -14,8 +16,20 @@ public class PatientHome extends javax.swing.JFrame {
     /**
      * Creates new form PatientHome
      */
-    public PatientHome() {
+    private static PatientHome obj = null;
+    
+    static String currentID;
+    public PatientHome(String userID) {
         initComponents();
+        this.currentID = userID;
+        LblTitle.setText("Welcome, " + SystemDatabase.FindUser(currentID).getUserFirstname());
+    }
+    
+    public static PatientHome getObj()
+    {
+        if (obj == null) {
+            obj = new PatientHome(currentID);
+        } return obj;
     }
 
     /**
@@ -27,21 +41,100 @@ public class PatientHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        LblTitle = new javax.swing.JLabel();
+        BtnRequestAppointment = new javax.swing.JButton();
+        BtnCreateDoctorFeedback = new javax.swing.JButton();
+        BtnRequestDeletion = new javax.swing.JButton();
+        BtnviewAppointment = new javax.swing.JButton();
+        BtnViewPrescription = new javax.swing.JButton();
+        BtnViewhistory = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        LblTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblTitle.setText("Welcome, Patient");
+
+        BtnRequestAppointment.setText("Request appointment");
+        BtnRequestAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRequestAppointmentActionPerformed(evt);
+            }
+        });
+
+        BtnCreateDoctorFeedback.setText("Create doctor feedback");
+        BtnCreateDoctorFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCreateDoctorFeedbackActionPerformed(evt);
+            }
+        });
+
+        BtnRequestDeletion.setText("Request account deletion");
+
+        BtnviewAppointment.setText("View appointment");
+
+        BtnViewPrescription.setText("View current prescription");
+
+        BtnViewhistory.setText("View history");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtnViewhistory, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BtnRequestDeletion))
+                    .addComponent(LblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnRequestAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnCreateDoctorFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnviewAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnViewPrescription, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LblTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnviewAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                    .addComponent(BtnRequestAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnCreateDoctorFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(BtnViewPrescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnViewhistory, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(BtnRequestDeletion)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnCreateDoctorFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreateDoctorFeedbackActionPerformed
+        // TODO add your handling code here:
+        new PatientDoctorFeedback(currentID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnCreateDoctorFeedbackActionPerformed
+
+    private void BtnRequestAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRequestAppointmentActionPerformed
+        // TODO add your handling code here:
+        new PatientRequestAppointment(currentID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnRequestAppointmentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -73,11 +166,18 @@ public class PatientHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PatientHome().setVisible(true);
+             new PatientHome(currentID).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCreateDoctorFeedback;
+    private javax.swing.JButton BtnRequestAppointment;
+    private javax.swing.JButton BtnRequestDeletion;
+    private javax.swing.JButton BtnViewPrescription;
+    private javax.swing.JButton BtnViewhistory;
+    private javax.swing.JButton BtnviewAppointment;
+    private javax.swing.JLabel LblTitle;
     // End of variables declaration//GEN-END:variables
 }
