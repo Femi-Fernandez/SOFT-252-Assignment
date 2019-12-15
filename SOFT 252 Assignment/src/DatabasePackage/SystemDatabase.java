@@ -32,7 +32,7 @@ public class SystemDatabase {
     public static ArrayList<Appointment> appointmentArray = new ArrayList<Appointment>();
     public static ArrayList<Prescription> prescriptionArray = new ArrayList<Prescription>();
     public static ArrayList<Medicine> medicineArray = new ArrayList<Medicine>();
-    public static ArrayList<IUser> patientDeleteRequest = new ArrayList<IUser>();
+    public static ArrayList<String> patientDeleteRequest = new ArrayList<String>();
     
     static File userArraytext = new File("src/Storage/userArray.txt");
     static File accountRequestText = new File("src/Storage/accountRequestArray.txt");
@@ -384,16 +384,11 @@ public class SystemDatabase {
     
     public static void saveDeleteRequestArray()
     {JSONArray jsonDeleteRequest = new JSONArray();
-        for (int i = 0; i < userArray.size(); i++) {
+        for (int i = 0; i < patientDeleteRequest.size(); i++) {
             
             JSONObject obj = new JSONObject();
-            obj.put("ID", userArray.get(i).getUserID());
-            obj.put("firstname", userArray.get(i).getUserFirstname());
-            obj.put("surname", userArray.get(i).getUserSurname());
-            obj.put("address",  userArray.get(i).getUserAddress());
-            obj.put("password",  userArray.get(i).getUserPassword());
-            obj.put("age",  userArray.get(i).getUserAge());
-            obj.put("gender", userArray.get(i).getUserGender());
+            obj.put("ID", patientDeleteRequest.get(i));
+            
 
              jsonDeleteRequest.add(i, obj);
         }
@@ -420,15 +415,8 @@ public class SystemDatabase {
                     JSONObject temp = (JSONObject) obj.get(i);
                     
                     String id =  String.valueOf((String) temp.get("ID"));
-                    String firstname =  String.valueOf((String) temp.get("firstname"));
-                    String surname =  String.valueOf((String) temp.get("surname"));
-                    String address =  String.valueOf((String) temp.get("address"));
-                    String password =  String.valueOf((String) temp.get("password"));
-                    String age = String.valueOf((String) temp.get("age"));  
-                    String gender = String.valueOf((String) temp.get("gender"));  
-                                
-                    Patient tempPatient = new Patient(id, firstname, surname, address, password, age, gender);
-                    patientDeleteRequest.add(tempPatient);
+          
+                    patientDeleteRequest.add(id);
 
                 }
             }
@@ -458,10 +446,20 @@ public class SystemDatabase {
     for (int i = 0; i <= SystemDatabase.userArray.size(); i++) {
             if (userArray.get(i).getUserID().charAt(0) == 'S')
             {
-                return SystemDatabase.userArray.get(i);               
+                return userArray.get(i);               
             }
         }
     return null;
+    }
+    
+    public static Appointment FindAppointment(String userID)
+    {
+        for (int i = 0; i < appointmentArray.size(); i++) {
+            if (appointmentArray.get(i).getPatientID().equals(userID)) {
+                return appointmentArray.get(i);
+            }
+        }
+        return null;
     }
     
 }

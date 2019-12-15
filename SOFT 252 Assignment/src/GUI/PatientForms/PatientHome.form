@@ -105,11 +105,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Request account deletion"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRequestDeletionActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnviewAppointment">
       <Properties>
         <Property name="text" type="java.lang.String" value="View appointment"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnviewAppointmentActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnViewPrescription">
       <Properties>

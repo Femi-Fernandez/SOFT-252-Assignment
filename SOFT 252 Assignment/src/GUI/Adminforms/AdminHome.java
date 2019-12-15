@@ -21,7 +21,7 @@ public class AdminHome extends javax.swing.JFrame {
     static String currentUserID;
     public AdminHome(String userID) {
         initComponents();
-        AdminHome.currentUserID = userID;
+        this.currentUserID = userID;
         LblTitle.setText("Welcome, " + SystemDatabase.FindUser(currentUserID).getUserFirstname());
         //LblTitle.setText("Welcome, " + SystemDatabase.FindUser(currentUserID));
     }
@@ -58,6 +58,11 @@ public class AdminHome extends javax.swing.JFrame {
         LblTitle.setText("Welcome, Admin ");
 
         jButton2.setText("View Doctor ratings");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Remove Doctor/secretary");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +122,12 @@ public class AdminHome extends javax.swing.JFrame {
         new RemoveDocSecAccount(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        new AdminViewDoctorRatings(currentUserID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,7 +5,9 @@
  */
 package GUI.PatientForms;
 
+import DatabasePackage.IUser;
 import DatabasePackage.SystemDatabase;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -70,8 +72,18 @@ public class PatientHome extends javax.swing.JFrame {
         });
 
         BtnRequestDeletion.setText("Request account deletion");
+        BtnRequestDeletion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRequestDeletionActionPerformed(evt);
+            }
+        });
 
         BtnviewAppointment.setText("View appointment");
+        BtnviewAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnviewAppointmentActionPerformed(evt);
+            }
+        });
 
         BtnViewPrescription.setText("View current prescription");
 
@@ -135,6 +147,36 @@ public class PatientHome extends javax.swing.JFrame {
         new PatientRequestAppointment(currentID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnRequestAppointmentActionPerformed
+
+    private void BtnRequestDeletionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRequestDeletionActionPerformed
+        // TODO add your handling code here:
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (null, "are you sure you want to request account termination?","Warning",dialogButton);
+        boolean IDExists = false;
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            for (int i = 0; i < SystemDatabase.patientDeleteRequest.size(); i++) {
+                if (SystemDatabase.patientDeleteRequest.get(i).equals(currentID)) {
+                System.out.println("Already exists");
+                IDExists = true;
+                break;
+                }
+            }
+            if (IDExists != true) {
+            SystemDatabase.patientDeleteRequest.add(currentID);
+            SystemDatabase.saveDeleteRequestArray();
+            } else
+            {
+            System.out.println("Already exists");
+            }
+
+        }
+    }//GEN-LAST:event_BtnRequestDeletionActionPerformed
+
+    private void BtnviewAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnviewAppointmentActionPerformed
+        // TODO add your handling code here:
+        new PatientViewAppointment(currentID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnviewAppointmentActionPerformed
 
     /**
      * @param args the command line arguments

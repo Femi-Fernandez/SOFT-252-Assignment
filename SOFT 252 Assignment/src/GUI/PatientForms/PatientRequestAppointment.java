@@ -165,13 +165,29 @@ public class PatientRequestAppointment extends javax.swing.JFrame {
         String dates = TxtDates.getText();
         String patientID = currentID;
         String status = "Unverified";
+        boolean requestExists = false;
         
+        for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
+            if (SystemDatabase.appointmentArray.get(i).getPatientID().equals(patientID)) {
+                requestExists = true;
+                break;
+            }
+        }
+        if (requestExists = false) {
         Appointment request = new Appointment(docID, patientID, dates, status);
         SystemDatabase.appointmentArray.add(request);
         SystemDatabase.saveAppointmentArray();
         showMessageDialog(null, "Feedback created");
         new PatientHome(currentID).setVisible(true);
         this.dispose();
+        } 
+        else 
+        {
+        showMessageDialog(null, "Appointment allready reques");
+        new PatientHome(currentID).setVisible(true);
+        this.dispose();
+        }
+       
     }//GEN-LAST:event_BtnRequestAppointmentActionPerformed
 
     /**

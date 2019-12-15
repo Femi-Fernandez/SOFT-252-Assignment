@@ -113,7 +113,7 @@ public class LoginForm extends javax.swing.JFrame {
                     char firstChar = userID.charAt(0);
                     
                     if (firstChar =='A') {
-                        new AdminHome(userID).setVisible(true);
+                        new AdminHome(userID).getObj().setVisible(true);
                         this.dispose();
                     }
                     if (firstChar =='D') {
