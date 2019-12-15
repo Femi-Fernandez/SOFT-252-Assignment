@@ -165,6 +165,7 @@ public class NewAccountForm extends javax.swing.JFrame {
             AccountRequest newAccountRequest = new AccountRequest(tempFirstname, tempSirname, tempAddress, tempPassword, tempAge, tempGender);
             SystemDatabase.accountRequests.add(newAccountRequest);
             SystemDatabase.SaveAccountRequests();
+            System.out.println("New account request created");
         }
         
         //AccountRequest newAccountRequest = new AccountRequest(tempFirstname, tempSirname, tempAddress, tempPassword, tempAge, tempGender);

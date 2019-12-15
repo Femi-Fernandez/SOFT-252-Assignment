@@ -12,11 +12,11 @@ package SystemPackage;
 public class DoctorFeedback {
     
     private String doctorID;
-    private int rating;
+    private String rating;
     private String notes;
     private boolean adminApproved;
 
-    public DoctorFeedback(String doctorID, int rating, String notes, boolean adminApproved) {
+    public DoctorFeedback(String doctorID, String rating, String notes, boolean adminApproved) {
         this.doctorID = doctorID;
         this.rating = rating;
         this.notes = notes;
@@ -31,11 +31,11 @@ public class DoctorFeedback {
         this.doctorID = doctorID;
     }
 
-    public int getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 

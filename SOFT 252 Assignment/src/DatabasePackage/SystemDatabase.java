@@ -5,7 +5,10 @@
  */
 package DatabasePackage;
 import SystemPackage.AccountRequest;
-import DatabasePackage.UserFactory;
+import SystemPackage.Appointment;
+import SystemPackage.DoctorFeedback;
+import SystemPackage.Medicine;
+import SystemPackage.Prescription;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -24,13 +27,17 @@ public class SystemDatabase {
     
     public static ArrayList<IUser> userArray  = new ArrayList<IUser>();
     public static ArrayList<AccountRequest> accountRequests = new ArrayList<AccountRequest>();
-
-    
-    static JSONObject accountRequestSave = new JSONObject();
+    public static ArrayList<DoctorFeedback> doctorFeedbackArray = new ArrayList<DoctorFeedback>();
+    public static ArrayList<Appointment> appointmentArray = new ArrayList<Appointment>();
+    public static ArrayList<Prescription> prescriptionArray = new ArrayList<Prescription>();
+    public static ArrayList<Medicine> medicineArray = new ArrayList<Medicine>();
     
     static File userArraytext = new File("src/Storage/userArray.txt");
     static File accountRequestText = new File("src/Storage/accountRequestArray.txt");
-
+    static File doctorFeedbackText = new File("src/Storage/doctorFeedbackArray.txt");
+    static File appointmentText = new File("src/Storage/appointmentArray.txt");
+    static File prescriptionText = new File("src/Storage/prescriptionArray.txt");
+    static File medicineText = new File("src/Storage/medicineArray.txt");
     
     public static void SaveUserArray(){ 
         JSONArray jsonUser = new JSONArray();
@@ -143,7 +150,7 @@ public class SystemDatabase {
                     String age =  (String) temp.get("age");  
                     String gender =  (String) temp.get("gender");
                     AccountRequest newAccountRequest = new AccountRequest(firstname, surname, address, password, age, gender);
-                    SystemDatabase.accountRequests.add(newAccountRequest);
+                    accountRequests.add(newAccountRequest);
                 }
             }
         }
@@ -153,6 +160,224 @@ public class SystemDatabase {
         }      
     }
     
+    public static void saveDoctorFeedback()  
+    {
+        JSONArray jsonDocFeedback = new JSONArray();
+        for (int i = 0; i < doctorFeedbackArray.size(); i++) {
+            
+            JSONObject obj = new JSONObject();
+            obj.put("docID", doctorFeedbackArray.get(i).getDoctorID());
+            obj.put("rating", doctorFeedbackArray.get(i).getRating());
+            obj.put("notes", doctorFeedbackArray.get(i).getNotes());
+            obj.put("adminApproved", doctorFeedbackArray.get(i).isAdminApproved());
+            
+            jsonDocFeedback.add(i, obj);
+        }
+        
+        try (FileWriter file = new FileWriter(doctorFeedbackText.getAbsolutePath())) {
+			file.write(jsonDocFeedback.toJSONString());
+			
+			//System.out.println( jsonUser);
+		} catch (IOException ex) {
+            Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public static void readDoctorFeedback()
+    {
+        JSONParser parser = new JSONParser();
+        
+        try
+        {
+            JSONArray obj = (JSONArray) parser.parse(new FileReader("src/Storage/doctorFeedbackArray.txt"));
+            if (obj != null) {
+                
+                for (int i = 0; i < obj.size(); i++) {
+                    JSONObject temp = (JSONObject) obj.get(i);
+                    
+                    String docID = (String) temp.get("docID");
+                    String rating = (String) temp.get("rating");
+                    String notes = (String) temp.get("notes");
+                    boolean adminApproved = (boolean) temp.get("adminApproved");
+                    
+                    DoctorFeedback newDocfeedback = new DoctorFeedback(docID, rating, notes, adminApproved);
+                    doctorFeedbackArray.add(newDocfeedback);
+                }
+                
+            }
+        
+        } catch (Exception ex) {
+            Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public static void saveAppointmentArray()
+    {
+        JSONArray jsonAppointments = new JSONArray();
+        if (appointmentArray != null) {
+            for (int i = 0; i < appointmentArray.size(); i++) {
+                
+                JSONObject obj = new JSONObject();
+                obj.put("docID", appointmentArray.get(i).getDocID());
+                obj.put("patientID", appointmentArray.get(i).getPatientID());
+                obj.put("dates", appointmentArray.get(i).getDate());
+                obj.put("status", appointmentArray.get(i).getStatus());
+                
+                jsonAppointments.add(i, obj);
+            }
+            
+            try (FileWriter file = new FileWriter(appointmentText.getAbsolutePath())) {
+			file.write(jsonAppointments.toJSONString());
+			
+			//System.out.println( jsonUser);
+		} catch (IOException ex) {
+            Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public static void readAppointmentArray()
+    {
+        JSONParser parser = new JSONParser(); 
+        
+        try{
+            
+            JSONArray obj = (JSONArray) parser.parse(new FileReader("src/Storage/appointmentArray.txt"));
+            if (obj != null) {
+                
+                for (int i = 0; i < obj.size(); i++) {
+                    JSONObject temp = (JSONObject) obj.get(i);
+                    
+                    String docID = (String) temp.get("docID");
+                    String patientID = (String) temp.get("patientID");
+                    String dates = (String) temp.get("dates");
+                    String status = (String) temp.get("status");
+                    
+                    Appointment newAppointment = new Appointment(docID, patientID, dates, status);
+                    appointmentArray.add(newAppointment);
+                }
+                
+            }
+                    
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+    }
+    
+    public static void savePrescriptionArray()
+    {
+        JSONArray jsonPrescriptions = new JSONArray();
+        if (prescriptionArray != null) {
+            for (int i = 0; i < prescriptionArray.size(); i++) {
+                JSONObject obj = new JSONObject();
+
+                obj.put("docID", prescriptionArray.get(i).getDoctorID());
+                obj.put("patientID", prescriptionArray.get(i).getPatientID());
+                obj.put("doctorNotes", prescriptionArray.get(i).getDoctorNotes());
+                obj.put("medicineName", prescriptionArray.get(i).getMedicine());
+                obj.put("quantity", prescriptionArray.get(i).getQuantity());
+                obj.put("dosage", prescriptionArray.get(i).getDosage());
+                obj.put("completed", prescriptionArray.get(i).getCompleted());
+                
+                jsonPrescriptions.add(i, obj);
+                
+            }
+            try (FileWriter file = new FileWriter(prescriptionText.getAbsolutePath())) {
+			file.write(jsonPrescriptions.toJSONString());
+			
+			//System.out.println( jsonUser);
+		} catch (IOException ex) {
+            Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public static void readPrescriptionArray()
+    {
+        JSONParser parser = new JSONParser(); 
+        
+        try {
+            
+            JSONArray obj = (JSONArray) parser.parse(new FileReader("src/Storage/prescriptionArray.txt"));
+            if (obj != null) {
+                
+                for (int i = 0; i < obj.size(); i++) {
+                    JSONObject temp = (JSONObject) obj.get(i);
+                    
+                    String docID = (String) temp.get("docID");
+                    String patientID = (String) temp.get("patientID");
+                    String doctorNotes = (String) temp.get("doctorNotes");
+                    String medicineName = (String) temp.get("medicineName");
+                    String quantity = (String) temp.get("quantity");
+                    String dosage = (String) temp.get("dosage");
+                    boolean completed = (boolean) temp.get("completed");
+                    
+                    Prescription newPrescription = new Prescription(docID, patientID, doctorNotes, medicineName, quantity, dosage, completed);
+                    prescriptionArray.add(newPrescription);
+                }
+                
+            }
+            
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+    
+    public static void saveMedicineArray()
+    {
+        JSONArray jsonMedicine = new JSONArray();
+        if (medicineArray != null) {
+            for (int i = 0; i < medicineArray.size(); i++) {
+                JSONObject obj = new JSONObject();
+                
+                obj.put("medicineName",medicineArray.get(i).getMedicineName());
+                obj.put("stock", medicineArray.get(i).getStock());
+                
+                jsonMedicine.add(i, obj);
+            }
+             try (FileWriter file = new FileWriter(medicineText.getAbsolutePath())) {
+			file.write(jsonMedicine.toJSONString());
+			
+			//System.out.println( jsonUser);
+		} catch (IOException ex) {
+            Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+    }
+    
+    public static void readMedicineArray()
+    {
+        JSONParser parser = new JSONParser(); 
+        
+        try
+        {
+            JSONArray obj = (JSONArray) parser.parse(new FileReader("src/Storage/medicineArray.txt"));
+            if (obj != null) {
+                for (int i = 0; i < obj.size(); i++) {
+                    JSONObject temp = (JSONObject) obj.get(i);
+                    
+                    String medicineName = (String) temp.get("medicineName");
+                    String stock = (String) temp.get("stock");
+                    
+                    Medicine newMedicine = new Medicine(medicineName, stock);
+                    medicineArray.add(newMedicine);
+                }
+            }
+        
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(SystemDatabase.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+
+    }
     
     public static IUser FindUser(String userID)
     {

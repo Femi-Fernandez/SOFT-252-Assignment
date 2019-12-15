@@ -12,18 +12,18 @@ package SystemPackage;
 public class Medicine {
  
     private String medicineName;
-    private int stock;
+    private String stock;
 
-    public Medicine(String medicineName, int stock) {
+    public Medicine(String medicineName, String stock) {
         this.medicineName = medicineName;
         this.stock = stock;
     }
 
-    public int getStock() {
+    public String getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(String stock) {
         this.stock = stock;
     }
 

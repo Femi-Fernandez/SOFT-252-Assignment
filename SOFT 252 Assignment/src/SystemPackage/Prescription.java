@@ -14,26 +14,26 @@ public class Prescription {
     private String doctorID;
     private String patientID;
     private String doctorNotes;
-    private Medicine medicine;
-    private int quantity;
+    private String medicineName;
+    private String quantity;
     private String dosage;
-    private String completed;
+    private boolean completed;
 
-    public Prescription(String doctorID, String patientID, String doctorNotes, Medicine medicine, int quantity, String dosage, String completed) {
+    public Prescription(String doctorID, String patientID, String doctorNotes, String medicine, String quantity, String dosage, boolean completed) {
         this.doctorID = doctorID;
         this.patientID = patientID;
         this.doctorNotes = doctorNotes;
-        this.medicine = medicine;
+        this.medicineName = medicine;
         this.quantity = quantity;
         this.dosage = dosage;
         this.completed = completed;
     }
 
-    public String getCompleted() {
+    public boolean getCompleted() {
         return completed;
     }
 
-    public void setCompleted(String completed) {
+    public void setCompleted(boolean completed) {
         this.completed = completed;
     }
 
@@ -61,19 +61,19 @@ public class Prescription {
         this.doctorNotes = doctorNotes;
     }
 
-    public Medicine getMedicine() {
-        return medicine;
+    public String getMedicine() {
+        return medicineName;
     }
 
-    public void setMedicine(Medicine medicine) {
-        this.medicine = medicine;
+    public void setMedicine(String medicine) {
+        this.medicineName = medicine;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
