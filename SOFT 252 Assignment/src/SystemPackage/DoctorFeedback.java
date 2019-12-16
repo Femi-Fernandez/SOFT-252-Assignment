@@ -14,9 +14,9 @@ public class DoctorFeedback {
     private String doctorID;
     private String rating;
     private String notes;
-    private boolean adminApproved;
+    private String adminApproved;
 
-    public DoctorFeedback(String doctorID, String rating, String notes, boolean adminApproved) {
+    public DoctorFeedback(String doctorID, String rating, String notes, String adminApproved) {
         this.doctorID = doctorID;
         this.rating = rating;
         this.notes = notes;
@@ -47,11 +47,11 @@ public class DoctorFeedback {
         this.notes = notes;
     }
 
-    public boolean isAdminApproved() {
+    public String isAdminApproved() {
         return adminApproved;
     }
 
-    public void setAdminApproved(boolean adminApproved) {
+    public void setAdminApproved(String adminApproved) {
         this.adminApproved = adminApproved;
     }
 

@@ -202,7 +202,7 @@ public class SystemDatabase {
                     String docID = (String) temp.get("docID");
                     String rating = (String) temp.get("rating");
                     String notes = (String) temp.get("notes");
-                    boolean adminApproved = (boolean) temp.get("adminApproved");
+                    String adminApproved = (String) temp.get("adminApproved");
                     
                     DoctorFeedback newDocfeedback = new DoctorFeedback(docID, rating, notes, adminApproved);
                     doctorFeedbackArray.add(newDocfeedback);

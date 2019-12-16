@@ -5,6 +5,8 @@
  */
 package GUI.SecretaryForms;
 
+import DatabasePackage.SystemDatabase;
+
 /**
  *
  * @author afernandez
@@ -14,10 +16,21 @@ public class SecretaryHome extends javax.swing.JFrame {
     /**
      * Creates new form SecretaryHome
      */
-    public SecretaryHome() {
+    private static SecretaryHome obj = null;
+    
+    static String currentUserID;
+    public SecretaryHome(String userID) {
         initComponents();
+        this.currentUserID = userID;
+        LblTitle.setText("Welcome, " + SystemDatabase.FindUser(currentUserID).getUserFirstname());
     }
 
+     public static SecretaryHome getObj()
+    {
+        if (obj == null) {
+            obj = new SecretaryHome(currentUserID);
+        } return obj;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,17 +40,38 @@ public class SecretaryHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        LblTitle = new javax.swing.JLabel();
+        BtnApprovePatientAccount = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        LblTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblTitle.setText("Welcome, Secretary");
+
+        BtnApprovePatientAccount.setText("Approve Patient Account");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtnApprovePatientAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(LblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LblTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnApprovePatientAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         pack();
@@ -73,11 +107,13 @@ public class SecretaryHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SecretaryHome().setVisible(true);
+                new SecretaryHome(currentUserID).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnApprovePatientAccount;
+    private javax.swing.JLabel LblTitle;
     // End of variables declaration//GEN-END:variables
 }

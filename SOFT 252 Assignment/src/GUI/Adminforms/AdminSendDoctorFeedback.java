@@ -6,25 +6,26 @@
 package GUI.Adminforms;
 
 import DatabasePackage.SystemDatabase;
-import SystemPackage.DoctorFeedback;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
  * @author afernandez
  */
-public class AdminViewDoctorRatings extends javax.swing.JFrame {
+public class AdminSendDoctorFeedback extends javax.swing.JFrame {
 
     /**
-     * Creates new form AdminViewDoctorRatings
+     * Creates new form AdminSendDoctorFeedback
      */
-     static String currentUserID;
-    public AdminViewDoctorRatings(String userID) {
+    static String currentUserID;
+    public AdminSendDoctorFeedback(String userID) {
         initComponents();
         this.currentUserID = userID;
         SetCombValues();
     }
-    
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -48,27 +49,30 @@ public class AdminViewDoctorRatings extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         CombDocID = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         LblDocName = new javax.swing.JLabel();
         BtnViewFeedback = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TxtAreaFeedbackInfo = new javax.swing.JTextArea();
         BtnBack = new javax.swing.JButton();
+        BtnSendFeedback = new javax.swing.JButton();
+        LblRating = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TxtFeedback = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("View doctor feedback");
-
-        jLabel2.setText("doctor's ID");
+        jLabel1.setText("Send Doctor feedback");
 
         CombDocID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CombDocIDActionPerformed(evt);
             }
         });
+
+        jLabel3.setText("doctor's ID");
 
         LblDocName.setText("doctor (DOCTOR NAME)");
 
@@ -79,10 +83,6 @@ public class AdminViewDoctorRatings extends javax.swing.JFrame {
             }
         });
 
-        TxtAreaFeedbackInfo.setColumns(20);
-        TxtAreaFeedbackInfo.setRows(5);
-        jScrollPane1.setViewportView(TxtAreaFeedbackInfo);
-
         BtnBack.setText("Back");
         BtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,50 +90,80 @@ public class AdminViewDoctorRatings extends javax.swing.JFrame {
             }
         });
 
+        BtnSendFeedback.setText("Send Doctor feedback");
+        BtnSendFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSendFeedbackActionPerformed(evt);
+            }
+        });
+
+        LblRating.setText("Rating: ");
+
+        jLabel4.setText("Notes");
+
+        TxtFeedback.setColumns(20);
+        TxtFeedback.setRows(5);
+        jScrollPane2.setViewportView(TxtFeedback);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel2)
+                        .addContainerGap()
+                        .addComponent(BtnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnSendFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(CombDocID, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(LblDocName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BtnViewFeedback))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BtnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(121, 121, 121))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(LblRating))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
                     .addComponent(CombDocID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
                     .addComponent(LblDocName)
                     .addComponent(BtnViewFeedback))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addComponent(LblRating)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                            .addComponent(BtnSendFeedback, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -148,14 +178,17 @@ public class AdminViewDoctorRatings extends javax.swing.JFrame {
     private void BtnViewFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewFeedbackActionPerformed
         // TODO add your handling code here:
         String combValue = CombDocID.getSelectedItem().toString();
-        TxtAreaFeedbackInfo.setText("");
-       
-            for (int i = 0; i < SystemDatabase.doctorFeedbackArray.size(); i++) {
-                if ((SystemDatabase.doctorFeedbackArray.get(i).getDoctorID().equals(combValue)) && ("unapproved".equals(SystemDatabase.doctorFeedbackArray.get(i).isAdminApproved())) ) {
-                TxtAreaFeedbackInfo.setText(TxtAreaFeedbackInfo.getText() + "\n" +SystemDatabase.doctorFeedbackArray.get(i).getDoctorID()+ "\n" +SystemDatabase.doctorFeedbackArray.get(i).getNotes()+ "\n" +SystemDatabase.doctorFeedbackArray.get(i).getRating());
-//SystemDatabase.doctorFeedbackArray.get(i));
+        TxtFeedback.setText("");
+
+        for (int i = 0; i < SystemDatabase.doctorFeedbackArray.size(); i++) {
+            if ((SystemDatabase.doctorFeedbackArray.get(i).getDoctorID().equals(combValue)) && ("unapproved".equals(SystemDatabase.doctorFeedbackArray.get(i).isAdminApproved())) ) {
+                TxtFeedback.setText(SystemDatabase.doctorFeedbackArray.get(i).getNotes());
+                LblRating.setText("Rating: " + SystemDatabase.doctorFeedbackArray.get(i).getRating());
+                break;
+                //SystemDatabase.doctorFeedbackArray.get(i));
             }
-        }     
+        }
+        
     }//GEN-LAST:event_BtnViewFeedbackActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
@@ -163,6 +196,25 @@ public class AdminViewDoctorRatings extends javax.swing.JFrame {
         new AdminHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed
+
+    private void BtnSendFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSendFeedbackActionPerformed
+        // TODO add your handling code here:
+        String combValue = CombDocID.getSelectedItem().toString();
+        for (int i = 0; i < SystemDatabase.doctorFeedbackArray.size(); i++) {
+            if ((SystemDatabase.doctorFeedbackArray.get(i).getDoctorID().equals(combValue)) && ("unapproved".equals(SystemDatabase.doctorFeedbackArray.get(i).isAdminApproved())) ) {
+                SystemDatabase.doctorFeedbackArray.get(i).setNotes(TxtFeedback.getText());
+                SystemDatabase.doctorFeedbackArray.get(i).setAdminApproved("approved");
+                showMessageDialog(null, "Feedback Updated");
+                SystemDatabase.saveDoctorFeedback();
+                new AdminHome(currentUserID).setVisible(true);
+                this.dispose();
+                //TxtFeedback.setText(SystemDatabase.doctorFeedbackArray.get(i).getNotes());
+                break;
+                //SystemDatabase.doctorFeedbackArray.get(i));
+            }
+        }
+        
+    }//GEN-LAST:event_BtnSendFeedbackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,32 +233,35 @@ public class AdminViewDoctorRatings extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminViewDoctorRatings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminSendDoctorFeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminViewDoctorRatings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminSendDoctorFeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminViewDoctorRatings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminSendDoctorFeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminViewDoctorRatings.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminSendDoctorFeedback.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminViewDoctorRatings(currentUserID).setVisible(true);
+                new AdminSendDoctorFeedback(currentUserID).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBack;
+    private javax.swing.JButton BtnSendFeedback;
     private javax.swing.JButton BtnViewFeedback;
     private javax.swing.JComboBox<String> CombDocID;
     private javax.swing.JLabel LblDocName;
-    private javax.swing.JTextArea TxtAreaFeedbackInfo;
+    private javax.swing.JLabel LblRating;
+    private javax.swing.JTextArea TxtFeedback;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

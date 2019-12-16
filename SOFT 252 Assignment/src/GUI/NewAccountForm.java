@@ -73,8 +73,6 @@ public class NewAccountForm extends javax.swing.JFrame {
 
         jLabel8.setText("Password");
 
-        TxtPassword.setText("jTextField1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

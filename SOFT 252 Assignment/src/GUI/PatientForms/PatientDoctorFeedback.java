@@ -170,7 +170,7 @@ public class PatientDoctorFeedback extends javax.swing.JFrame {
         String docID = CombDocID.getSelectedItem().toString();
         String rating = CombRating.getSelectedItem().toString();
         String feedback = TxtFeedback.getText();
-        boolean adminApproved = false;
+        String adminApproved = "unapproved";
         
         DoctorFeedback tempFeedback = new DoctorFeedback(docID, rating, feedback, adminApproved);
         SystemDatabase.doctorFeedbackArray.add(tempFeedback);

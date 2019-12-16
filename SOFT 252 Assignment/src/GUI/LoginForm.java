@@ -9,6 +9,7 @@ import DatabasePackage.SystemDatabase;
 import GUI.Adminforms.AdminHome;
 import GUI.DoctorForms.DoctorHome;
 import GUI.PatientForms.PatientHome;
+import GUI.SecretaryForms.SecretaryHome;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
@@ -125,7 +126,8 @@ public class LoginForm extends javax.swing.JFrame {
                         this.dispose();
                     }
                     if (firstChar =='S') {
-                        
+                        new SecretaryHome(userID).getObj().setVisible(true);
+                        this.dispose();
                     }
                 }
             }//System.out.println( jsonUser);
