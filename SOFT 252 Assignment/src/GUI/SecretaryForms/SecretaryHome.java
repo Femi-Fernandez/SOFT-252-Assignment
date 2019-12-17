@@ -45,6 +45,7 @@ public class SecretaryHome extends javax.swing.JFrame {
         BtnRemovePatientAccount = new javax.swing.JButton();
         BtnPatientRemoverequest = new javax.swing.JButton();
         BtnCreateAppointment = new javax.swing.JButton();
+        BtnAppointmentRequests = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +81,13 @@ public class SecretaryHome extends javax.swing.JFrame {
             }
         });
 
+        BtnAppointmentRequests.setText("Approve Appointment Requests");
+        BtnAppointmentRequests.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAppointmentRequestsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,16 +95,16 @@ public class SecretaryHome extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(LblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnApprovePatientAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BtnApprovePatientAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BtnRemovePatientAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BtnPatientRemoverequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(BtnPatientRemoverequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnAppointmentRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,7 +119,9 @@ public class SecretaryHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnPatientRemoverequest, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(BtnAppointmentRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(113, Short.MAX_VALUE))
         );
 
@@ -141,6 +151,12 @@ public class SecretaryHome extends javax.swing.JFrame {
         new SecretaryCreateAppointment(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnCreateAppointmentActionPerformed
+
+    private void BtnAppointmentRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAppointmentRequestsActionPerformed
+        // TODO add your handling code here:
+        new SecretaryAppointmentRequests(currentUserID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnAppointmentRequestsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +194,7 @@ public class SecretaryHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAppointmentRequests;
     private javax.swing.JButton BtnApprovePatientAccount;
     private javax.swing.JButton BtnCreateAppointment;
     private javax.swing.JButton BtnPatientRemoverequest;
