@@ -31,12 +31,12 @@ public class DoctorViewAppointments extends javax.swing.JFrame {
             if (SystemDatabase.appointmentArray.get(i).getDocID().equals(currentUserID)) {
                 var temp = SystemDatabase.FindAppointment(currentUserID);
                 var patientInfo = SystemDatabase.FindUser(temp.getPatientID());
-                TxtAppointmentsInfo.setText(patientInfo.getUserFirstname() + "\n" +
+                TxtAppointmentsInfo.setText(TxtAppointmentsInfo.getText()+ patientInfo.getUserFirstname() + "\n" +
                                             patientInfo.getUserSurname() + "\n" +
                                             patientInfo.getUserAge() + "\n" +
                                             patientInfo.getUserAge() + "\n \n" +
                                             temp.getDate() + "\n" +
-                                            temp.getStatus());
+                                            temp.getStatus()+ "\n");
             }
         }
     }
