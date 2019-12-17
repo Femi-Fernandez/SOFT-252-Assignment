@@ -13,29 +13,27 @@ import static javax.swing.JOptionPane.showMessageDialog;
  *
  * @author afernandez
  */
-public class SecretaryRemovePatientAccount extends javax.swing.JFrame {
+public class SecretaryPatientRequestRemoval extends javax.swing.JFrame {
 
     /**
-     * Creates new form SecretaryRemovePatientAccount
+     * Creates new form SecretaryPatientRequestRemoval
      */
     static String currentUserID;
-    public SecretaryRemovePatientAccount(String userID) {
+    public SecretaryPatientRequestRemoval(String userID) {
         initComponents();
         this.currentUserID = userID;
         SetCombValues();
     }
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
-            for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
-                if (SystemDatabase.userArray.get(i).getUserID().charAt(0) == 'P') {
-                    a.add(SystemDatabase.userArray.get(i).getUserID());
-                }      
+            for (int i = 0; i < SystemDatabase.patientDeleteRequest.size(); i++) {
+                a.add(SystemDatabase.patientDeleteRequest.get(i));                
         }
         
         for (String value : a) {
                 CombPatientID.addItem(value); 
         }
-    }   
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,23 +47,19 @@ public class SecretaryRemovePatientAccount extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         CombPatientID = new javax.swing.JComboBox<>();
+        BtnViewPatient = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TxtPatientInfo = new javax.swing.JTextArea();
-        BtnViewPatient = new javax.swing.JButton();
-        BtnCancel = new javax.swing.JButton();
-        BtnRemovePatient = new javax.swing.JButton();
+        BtnBack = new javax.swing.JButton();
+        BtnRemoveUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Remove Patient Account");
+        jLabel1.setText("Patient account removal Requests");
 
         jLabel2.setText("Patient ID");
-
-        TxtPatientInfo.setColumns(20);
-        TxtPatientInfo.setRows(5);
-        jScrollPane1.setViewportView(TxtPatientInfo);
 
         BtnViewPatient.setText("View Patient");
         BtnViewPatient.addActionListener(new java.awt.event.ActionListener() {
@@ -74,17 +68,21 @@ public class SecretaryRemovePatientAccount extends javax.swing.JFrame {
             }
         });
 
-        BtnCancel.setText("Cancel");
-        BtnCancel.addActionListener(new java.awt.event.ActionListener() {
+        TxtPatientInfo.setColumns(20);
+        TxtPatientInfo.setRows(5);
+        jScrollPane1.setViewportView(TxtPatientInfo);
+
+        BtnBack.setText("Back");
+        BtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCancelActionPerformed(evt);
+                BtnBackActionPerformed(evt);
             }
         });
 
-        BtnRemovePatient.setText("Remove Patient");
-        BtnRemovePatient.addActionListener(new java.awt.event.ActionListener() {
+        BtnRemoveUser.setText("Remove Patient");
+        BtnRemoveUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnRemovePatientActionPerformed(evt);
+                BtnRemoveUserActionPerformed(evt);
             }
         });
 
@@ -93,24 +91,29 @@ public class SecretaryRemovePatientAccount extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CombPatientID, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37)
+                                .addComponent(BtnViewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(BtnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BtnRemoveUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtnRemovePatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CombPatientID, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnViewPatient)))
-                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,12 +126,12 @@ public class SecretaryRemovePatientAccount extends javax.swing.JFrame {
                     .addComponent(CombPatientID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnViewPatient))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BtnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(BtnRemovePatient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(BtnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(BtnRemoveUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -151,27 +154,35 @@ public class SecretaryRemovePatientAccount extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnViewPatientActionPerformed
 
-    private void BtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelActionPerformed
+    private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
         // TODO add your handling code here:
         new SecretaryHome(currentUserID).setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_BtnCancelActionPerformed
+    }//GEN-LAST:event_BtnBackActionPerformed
 
-    private void BtnRemovePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemovePatientActionPerformed
+    private void BtnRemoveUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoveUserActionPerformed
         // TODO add your handling code here:
         String combValue = CombPatientID.getSelectedItem().toString();
         for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
             if (SystemDatabase.userArray.get(i).getUserID().equals(combValue)) {
                 SystemDatabase.userArray.remove(i);
-                showMessageDialog(null, "Patient account has been deleted");
+                
+                for (int j = 0; j < SystemDatabase.patientDeleteRequest.size(); j++) {
+                    if (SystemDatabase.patientDeleteRequest.get(j).equals(combValue)) {
+                        SystemDatabase.patientDeleteRequest.remove(j);
+                        break;
+                    }
+                }
+                
+                showMessageDialog(null, "Requested Patient account has been deleted");
                 SystemDatabase.SaveUserArray();
+                SystemDatabase.saveDeleteRequestArray();
                 new SecretaryHome(currentUserID).setVisible(true);
                 this.dispose();               
                 break;
             }
         }
-        
-    }//GEN-LAST:event_BtnRemovePatientActionPerformed
+    }//GEN-LAST:event_BtnRemoveUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,27 +201,27 @@ public class SecretaryRemovePatientAccount extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SecretaryRemovePatientAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecretaryPatientRequestRemoval.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SecretaryRemovePatientAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecretaryPatientRequestRemoval.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SecretaryRemovePatientAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecretaryPatientRequestRemoval.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SecretaryRemovePatientAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SecretaryPatientRequestRemoval.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SecretaryRemovePatientAccount(currentUserID).setVisible(true);
+                new SecretaryPatientRequestRemoval(currentUserID).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCancel;
-    private javax.swing.JButton BtnRemovePatient;
+    private javax.swing.JButton BtnBack;
+    private javax.swing.JButton BtnRemoveUser;
     private javax.swing.JButton BtnViewPatient;
     private javax.swing.JComboBox<String> CombPatientID;
     private javax.swing.JTextArea TxtPatientInfo;

@@ -54,7 +54,7 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
         BtnShowRequest = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         TxtIDNum = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        BtnCreatePatientAccount = new javax.swing.JButton();
         BtnCancel = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
@@ -85,10 +85,10 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
 
         jLabel3.setText("Enter Patient's ID: ");
 
-        jButton1.setText("create new user");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtnCreatePatientAccount.setText("create new user");
+        BtnCreatePatientAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnCreatePatientAccountActionPerformed(evt);
             }
         });
 
@@ -133,7 +133,7 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addComponent(BtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnCreatePatientAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)))
                 .addContainerGap())
         );
@@ -156,7 +156,7 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(BtnCreatePatientAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                     .addComponent(BtnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -185,7 +185,7 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnShowRequestActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnCreatePatientAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreatePatientAccountActionPerformed
         // TODO add your handling code here:
         String combValue = CombName.getSelectedItem().toString();
         outerloop:
@@ -218,7 +218,7 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
                 
             }
          }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BtnCreatePatientAccountActionPerformed
 
     private void BtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelActionPerformed
         // TODO add your handling code here:
@@ -263,11 +263,11 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancel;
+    private javax.swing.JButton BtnCreatePatientAccount;
     private javax.swing.JButton BtnShowRequest;
     private javax.swing.JComboBox<String> CombName;
     private javax.swing.JTextField TxtIDNum;
     private javax.swing.JTextArea TxtPatientInfo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
