@@ -341,6 +341,7 @@ public class SystemDatabase {
                 
                 obj.put("medicineName",medicineArray.get(i).getMedicineName());
                 obj.put("stock", medicineArray.get(i).getStock());
+                obj.put("newMedicine", medicineArray.get(i).getNewMedicine());
                 
                 jsonMedicine.add(i, obj);
             }
@@ -368,8 +369,9 @@ public class SystemDatabase {
                     
                     String medicineName = (String) temp.get("medicineName");
                     String stock = (String) temp.get("stock");
+                    boolean newMed = (boolean) temp.get("newMedicine");
                     
-                    Medicine newMedicine = new Medicine(medicineName, stock);
+                    Medicine newMedicine = new Medicine(medicineName, stock, newMed);
                     medicineArray.add(newMedicine);
                 }
             }
@@ -455,7 +457,7 @@ public class SystemDatabase {
     public static Appointment FindAppointment(String userID)
     {
         for (int i = 0; i < appointmentArray.size(); i++) {
-            if (appointmentArray.get(i).getPatientID().equals(userID)) {
+            if ((appointmentArray.get(i).getPatientID().equals(userID)) || (appointmentArray.get(i).getDocID().equals(userID))) {
                 return appointmentArray.get(i);
             }
         }

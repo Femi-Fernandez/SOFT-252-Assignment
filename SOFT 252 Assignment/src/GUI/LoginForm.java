@@ -118,7 +118,7 @@ public class LoginForm extends javax.swing.JFrame {
                         this.dispose();
                     }
                     if (firstChar =='D') {
-                        new DoctorHome().setVisible(true);
+                        new DoctorHome(userID).getObj().setVisible(true);
                         this.dispose();
                     }
                     if (firstChar =='P') {

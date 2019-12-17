@@ -13,10 +13,12 @@ public class Medicine {
  
     private String medicineName;
     private String stock;
+    private boolean newMedicine;
 
-    public Medicine(String medicineName, String stock) {
+    public Medicine(String medicineName, String stock, boolean newMedicine) {
         this.medicineName = medicineName;
         this.stock = stock;
+        this.newMedicine = newMedicine;
     }
 
     public String getStock() {
@@ -33,6 +35,14 @@ public class Medicine {
 
     public void setMedicineName(String medicineName) {
         this.medicineName = medicineName;
+    }
+
+    public boolean getNewMedicine() {
+        return newMedicine;
+    }
+
+    public void setNewMedicine(boolean newMedicine) {
+        this.newMedicine = newMedicine;
     }
     
     

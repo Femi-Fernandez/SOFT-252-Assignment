@@ -5,6 +5,8 @@
  */
 package GUI.DoctorForms;
 
+import DatabasePackage.SystemDatabase;
+
 /**
  *
  * @author afernandez
@@ -14,10 +16,22 @@ public class DoctorHome extends javax.swing.JFrame {
     /**
      * Creates new form DoctorHome
      */
-    public DoctorHome() {
+    private static DoctorHome obj = null;
+    
+    static String currentUserID;
+    
+    public DoctorHome(String userID) {
         initComponents();
+        this.currentUserID = userID;
+        LblTitle.setText("Welcome, " + SystemDatabase.FindUser(currentUserID).getUserFirstname());
     }
 
+    public static DoctorHome getObj()
+    {
+        if (obj == null) {
+            obj = new DoctorHome(currentUserID);
+        } return obj;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +41,53 @@ public class DoctorHome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        LblTitle = new javax.swing.JLabel();
+        BtnViewAppointments = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        LblTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        LblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblTitle.setText("Welcome, Doctor");
+
+        BtnViewAppointments.setText("View appointments");
+        BtnViewAppointments.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnViewAppointmentsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BtnViewAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(LblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LblTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnViewAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(212, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnViewAppointmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewAppointmentsActionPerformed
+        // TODO add your handling code here:
+        new DoctorViewAppointments(currentUserID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnViewAppointmentsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -73,11 +119,13 @@ public class DoctorHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DoctorHome().setVisible(true);
+                new DoctorHome(currentUserID).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnViewAppointments;
+    private javax.swing.JLabel LblTitle;
     // End of variables declaration//GEN-END:variables
 }
