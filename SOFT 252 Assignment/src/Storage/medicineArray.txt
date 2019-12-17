@@ -1,0 +1,1 @@
+[{"newMedicine":true,"stock":"0","medicineName":"Ibuprofen, 200mg"},{"newMedicine":false,"stock":"20","medicineName":"Adderall, 10mg"}]

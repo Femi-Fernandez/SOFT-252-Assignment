@@ -46,6 +46,7 @@ public class SecretaryHome extends javax.swing.JFrame {
         BtnPatientRemoverequest = new javax.swing.JButton();
         BtnCreateAppointment = new javax.swing.JButton();
         BtnAppointmentRequests = new javax.swing.JButton();
+        BtnGetRequestedMedicine = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +89,13 @@ public class SecretaryHome extends javax.swing.JFrame {
             }
         });
 
+        BtnGetRequestedMedicine.setText("Order requested medicine");
+        BtnGetRequestedMedicine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGetRequestedMedicineActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,9 +105,10 @@ public class SecretaryHome extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BtnApprovePatientAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BtnApprovePatientAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BtnGetRequestedMedicine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BtnRemovePatientAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -117,7 +126,9 @@ public class SecretaryHome extends javax.swing.JFrame {
                     .addComponent(BtnApprovePatientAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                     .addComponent(BtnRemovePatientAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnPatientRemoverequest, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnPatientRemoverequest, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(BtnGetRequestedMedicine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
@@ -158,6 +169,12 @@ public class SecretaryHome extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BtnAppointmentRequestsActionPerformed
 
+    private void BtnGetRequestedMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGetRequestedMedicineActionPerformed
+        // TODO add your handling code here:
+        new SecretaryGetRequestedMedicine(currentUserID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnGetRequestedMedicineActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -197,6 +214,7 @@ public class SecretaryHome extends javax.swing.JFrame {
     private javax.swing.JButton BtnAppointmentRequests;
     private javax.swing.JButton BtnApprovePatientAccount;
     private javax.swing.JButton BtnCreateAppointment;
+    private javax.swing.JButton BtnGetRequestedMedicine;
     private javax.swing.JButton BtnPatientRemoverequest;
     private javax.swing.JButton BtnRemovePatientAccount;
     private javax.swing.JLabel LblTitle;

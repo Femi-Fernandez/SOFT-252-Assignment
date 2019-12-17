@@ -41,12 +41,16 @@ public class DoctorCreatePrescription extends javax.swing.JFrame {
     }  
     public void SetMedCombValues(){
         ArrayList<String> a = new ArrayList<String>();
-            for (int i = 0; i < SystemDatabase.medicineArray.size(); i++) {
+            for (int i = 0; i < SystemDatabase.medicineArray.size(); i++)
+            {
+                if (SystemDatabase.medicineArray.get(i).getNewMedicine() == false) {
                     a.add(SystemDatabase.medicineArray.get(i).getMedicineName());
+                }
+                    
         }
         for (String value : a) 
         {
-            CombPatientID.addItem(value); 
+            CombMedName.addItem(value); 
         }
     }   
 

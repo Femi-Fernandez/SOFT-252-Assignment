@@ -45,6 +45,7 @@ public class DoctorHome extends javax.swing.JFrame {
         BtnViewAppointments = new javax.swing.JButton();
         BtnCreateAppointment = new javax.swing.JButton();
         BtnCreatePrescription = new javax.swing.JButton();
+        BtnRequestMedicine = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,24 +68,42 @@ public class DoctorHome extends javax.swing.JFrame {
         });
 
         BtnCreatePrescription.setText("Create new prescription");
+        BtnCreatePrescription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCreatePrescriptionActionPerformed(evt);
+            }
+        });
+
+        BtnRequestMedicine.setText("Request new medicine");
+        BtnRequestMedicine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRequestMedicineActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnViewAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(LblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BtnViewAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(LblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(BtnCreatePrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(BtnCreatePrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(BtnRequestMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -98,7 +117,9 @@ public class DoctorHome extends javax.swing.JFrame {
                     .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnCreatePrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnRequestMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,6 +136,18 @@ public class DoctorHome extends javax.swing.JFrame {
         new DoctorCreateAppointment(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnCreateAppointmentActionPerformed
+
+    private void BtnRequestMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRequestMedicineActionPerformed
+        // TODO add your handling code here:
+        new DoctorRequestMedicine(currentUserID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnRequestMedicineActionPerformed
+
+    private void BtnCreatePrescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreatePrescriptionActionPerformed
+        // TODO add your handling code here:
+        new DoctorCreatePrescription(currentUserID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnCreatePrescriptionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,6 +187,7 @@ public class DoctorHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCreateAppointment;
     private javax.swing.JButton BtnCreatePrescription;
+    private javax.swing.JButton BtnRequestMedicine;
     private javax.swing.JButton BtnViewAppointments;
     private javax.swing.JLabel LblTitle;
     // End of variables declaration//GEN-END:variables
