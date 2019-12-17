@@ -177,13 +177,13 @@ public class PatientRequestAppointment extends javax.swing.JFrame {
         Appointment request = new Appointment(docID, patientID, dates, status);
         SystemDatabase.appointmentArray.add(request);
         SystemDatabase.saveAppointmentArray();
-        showMessageDialog(null, "Feedback created");
+        showMessageDialog(null, "Appointment request created");
         new PatientHome(currentID).setVisible(true);
         this.dispose();
         } 
         else 
         {
-        showMessageDialog(null, "Appointment allready reques");
+        showMessageDialog(null, "Appointment already requested");
         new PatientHome(currentID).setVisible(true);
         this.dispose();
         }
