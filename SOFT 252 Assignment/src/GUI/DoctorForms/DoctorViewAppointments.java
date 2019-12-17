@@ -25,10 +25,11 @@ public class DoctorViewAppointments extends javax.swing.JFrame {
     
     public void loadAppointments()
     {
+        String combStatus = CombStatus.getSelectedItem().toString();
         TxtAppointmentsInfo.setText("");
         for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) 
         {
-            if (SystemDatabase.appointmentArray.get(i).getDocID().equals(currentUserID)) {
+            if ((SystemDatabase.appointmentArray.get(i).getDocID().equals(currentUserID)) && SystemDatabase.appointmentArray.get(i).getStatus().equals(combStatus)) {
                 //var temp = SystemDatabase.FindAppointment(currentUserID);
                 var patientInfo = SystemDatabase.FindUser(SystemDatabase.appointmentArray.get(i).getPatientID());
                 TxtAppointmentsInfo.setText("\n\n" + TxtAppointmentsInfo.getText()+ patientInfo.getUserFirstname() + "\n" +
@@ -53,6 +54,7 @@ public class DoctorViewAppointments extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TxtAppointmentsInfo = new javax.swing.JTextArea();
         BtnBack = new javax.swing.JButton();
+        CombStatus = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +70,14 @@ public class DoctorViewAppointments extends javax.swing.JFrame {
         BtnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnBackActionPerformed(evt);
+            }
+        });
+
+        CombStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        CombStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Verified", "Completed" }));
+        CombStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CombStatusActionPerformed(evt);
             }
         });
 
@@ -87,14 +97,20 @@ public class DoctorViewAppointments extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
                         .addGap(0, 93, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(CombStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CombStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addContainerGap())
@@ -108,6 +124,11 @@ public class DoctorViewAppointments extends javax.swing.JFrame {
         new DoctorHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed
+
+    private void CombStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombStatusActionPerformed
+        // TODO add your handling code here:
+        loadAppointments();
+    }//GEN-LAST:event_CombStatusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,6 +167,7 @@ public class DoctorViewAppointments extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnBack;
+    private javax.swing.JComboBox<String> CombStatus;
     private javax.swing.JTextArea TxtAppointmentsInfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

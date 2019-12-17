@@ -43,6 +43,8 @@ public class DoctorHome extends javax.swing.JFrame {
 
         LblTitle = new javax.swing.JLabel();
         BtnViewAppointments = new javax.swing.JButton();
+        BtnCreateAppointment = new javax.swing.JButton();
+        BtnCreatePrescription = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +59,15 @@ public class DoctorHome extends javax.swing.JFrame {
             }
         });
 
+        BtnCreateAppointment.setText("Create appointment");
+        BtnCreateAppointment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCreateAppointmentActionPerformed(evt);
+            }
+        });
+
+        BtnCreatePrescription.setText("Create new prescription");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,9 +77,15 @@ public class DoctorHome extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BtnViewAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(LblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                    .addComponent(LblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(BtnCreatePrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,8 +93,12 @@ public class DoctorHome extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(LblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnViewAppointments, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnViewAppointments, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(BtnCreateAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnCreatePrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         pack();
@@ -88,6 +109,12 @@ public class DoctorHome extends javax.swing.JFrame {
         new DoctorViewAppointments(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnViewAppointmentsActionPerformed
+
+    private void BtnCreateAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreateAppointmentActionPerformed
+        // TODO add your handling code here:
+        new DoctorCreateAppointment(currentUserID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnCreateAppointmentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,6 +152,8 @@ public class DoctorHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCreateAppointment;
+    private javax.swing.JButton BtnCreatePrescription;
     private javax.swing.JButton BtnViewAppointments;
     private javax.swing.JLabel LblTitle;
     // End of variables declaration//GEN-END:variables
