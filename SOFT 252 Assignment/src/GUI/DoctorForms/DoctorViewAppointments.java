@@ -29,14 +29,13 @@ public class DoctorViewAppointments extends javax.swing.JFrame {
         for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) 
         {
             if (SystemDatabase.appointmentArray.get(i).getDocID().equals(currentUserID)) {
-                var temp = SystemDatabase.FindAppointment(currentUserID);
-                var patientInfo = SystemDatabase.FindUser(temp.getPatientID());
-                TxtAppointmentsInfo.setText(TxtAppointmentsInfo.getText()+ patientInfo.getUserFirstname() + "\n" +
+                //var temp = SystemDatabase.FindAppointment(currentUserID);
+                var patientInfo = SystemDatabase.FindUser(SystemDatabase.appointmentArray.get(i).getPatientID());
+                TxtAppointmentsInfo.setText("\n\n" + TxtAppointmentsInfo.getText()+ patientInfo.getUserFirstname() + "\n" +
                                             patientInfo.getUserSurname() + "\n" +
-                                            patientInfo.getUserAge() + "\n" +
-                                            patientInfo.getUserAge() + "\n \n" +
-                                            temp.getDate() + "\n" +
-                                            temp.getStatus()+ "\n");
+                                            patientInfo.getUserAge() + "\n"+
+                                            SystemDatabase.appointmentArray.get(i).getDate() + "\n" +
+                                            SystemDatabase.appointmentArray.get(i).getStatus()+ "\n");
             }
         }
     }
