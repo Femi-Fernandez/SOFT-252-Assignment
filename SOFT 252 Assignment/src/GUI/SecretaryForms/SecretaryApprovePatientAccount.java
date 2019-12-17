@@ -5,8 +5,9 @@
  */
 package GUI.SecretaryForms;
 
-import DatabasePackage.SystemDatabase;
+import DatabasePackage.*;
 import java.util.ArrayList;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -17,8 +18,11 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
     /**
      * Creates new form SecretaryApprovePatientAccount
      */
-    public SecretaryApprovePatientAccount() {
+    static String currentUserID;
+    public SecretaryApprovePatientAccount(String userID) {
         initComponents();
+        this.currentUserID = userID;
+        SetCombValues();
     }
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
@@ -49,7 +53,7 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
         TxtPatientInfo = new javax.swing.JTextArea();
         BtnShowRequest = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtNewID = new javax.swing.JTextField();
+        TxtIDNum = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         BtnCancel = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -89,6 +93,11 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
         });
 
         BtnCancel.setText("Cancel");
+        BtnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("P");
 
@@ -118,7 +127,7 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNewID, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(TxtIDNum, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
@@ -138,12 +147,12 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(CombName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnShowRequest))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNewID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtIDNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -166,10 +175,10 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
         
         for (int i = 0; i < SystemDatabase.accountRequests.size(); i++) {
             if (SystemDatabase.accountRequests.get(i).getFirstname().equals(combValue)) {
-                TxtPatientInfo.setText(SystemDatabase.accountRequests.get(i).getFirstname() + "\n "+ 
-                       SystemDatabase.accountRequests.get(i).getSurname() + "\n "+ 
-                       SystemDatabase.accountRequests.get(i).getAddress() + "\n "+  
-                       SystemDatabase.accountRequests.get(i).getAge()     + "\n "+  
+                TxtPatientInfo.setText(SystemDatabase.accountRequests.get(i).getFirstname() + "\n"+ 
+                       SystemDatabase.accountRequests.get(i).getSurname() + "\n"+ 
+                       SystemDatabase.accountRequests.get(i).getAddress() + "\n"+  
+                       SystemDatabase.accountRequests.get(i).getAge()     + "\n"+  
                        SystemDatabase.accountRequests.get(i).getGender());
                 break;
             }
@@ -179,13 +188,43 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String combValue = CombName.getSelectedItem().toString();
+        outerloop:
          for (int i = 0; i < SystemDatabase.accountRequests.size(); i++) {
             if (SystemDatabase.accountRequests.get(i).getFirstname().equals(combValue)) 
             {
+                String ID = ("P"+ TxtIDNum.getText());
+                for (int j = 0; j < SystemDatabase.userArray.size(); j++) {
+                    if (ID.equals(SystemDatabase.userArray.get(j).getUserID())) {
+                        showMessageDialog(null, "ID already exists, please enter a new one.");
+                        break outerloop;
+                    }
+                }
+                
+                String firstname = SystemDatabase.accountRequests.get(i).getFirstname();
+                String surname = SystemDatabase.accountRequests.get(i).getSurname();
+                String address = SystemDatabase.accountRequests.get(i).getAddress();
+                String password = SystemDatabase.accountRequests.get(i).getPassword();
+                String age = SystemDatabase.accountRequests.get(i).getAge();
+                String gender = SystemDatabase.accountRequests.get(i).getGender();
+                
+                UserFactory.getUserType(ID, firstname, surname, address, password, age, gender);
+                SystemDatabase.accountRequests.remove(i);
+                showMessageDialog(null, "New user created with ID: " + ID);
+                SystemDatabase.SaveAccountRequests();
+                SystemDatabase.SaveUserArray();
+                new SecretaryHome(currentUserID).setVisible(true);
+                this.dispose();               
+                break;
                 
             }
          }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelActionPerformed
+        // TODO add your handling code here:
+        new SecretaryHome(currentUserID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnCancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,7 +256,7 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SecretaryApprovePatientAccount().setVisible(true);
+                new SecretaryApprovePatientAccount(currentUserID).setVisible(true);
             }
         });
     }
@@ -226,6 +265,7 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
     private javax.swing.JButton BtnCancel;
     private javax.swing.JButton BtnShowRequest;
     private javax.swing.JComboBox<String> CombName;
+    private javax.swing.JTextField TxtIDNum;
     private javax.swing.JTextArea TxtPatientInfo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -233,6 +273,5 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtNewID;
     // End of variables declaration//GEN-END:variables
 }

@@ -42,6 +42,7 @@ public class SecretaryHome extends javax.swing.JFrame {
 
         LblTitle = new javax.swing.JLabel();
         BtnApprovePatientAccount = new javax.swing.JButton();
+        BtnRemovePatientAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,6 +51,18 @@ public class SecretaryHome extends javax.swing.JFrame {
         LblTitle.setText("Welcome, Secretary");
 
         BtnApprovePatientAccount.setText("Approve Patient Account");
+        BtnApprovePatientAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnApprovePatientAccountActionPerformed(evt);
+            }
+        });
+
+        BtnRemovePatientAccount.setText("Remove patient account");
+        BtnRemovePatientAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRemovePatientAccountActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,7 +73,8 @@ public class SecretaryHome extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BtnApprovePatientAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(39, 39, 39)
+                        .addComponent(BtnRemovePatientAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(LblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -70,12 +84,26 @@ public class SecretaryHome extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(LblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BtnApprovePatientAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnApprovePatientAccount, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(BtnRemovePatientAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(207, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnApprovePatientAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnApprovePatientAccountActionPerformed
+        // TODO add your handling code here:
+        new SecretaryApprovePatientAccount(currentUserID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnApprovePatientAccountActionPerformed
+
+    private void BtnRemovePatientAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemovePatientAccountActionPerformed
+        // TODO add your handling code here:
+        new SecretaryRemovePatientAccount(currentUserID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnRemovePatientAccountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,6 +142,7 @@ public class SecretaryHome extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnApprovePatientAccount;
+    private javax.swing.JButton BtnRemovePatientAccount;
     private javax.swing.JLabel LblTitle;
     // End of variables declaration//GEN-END:variables
 }

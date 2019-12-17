@@ -45,7 +45,7 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
         TxtSurname = new javax.swing.JTextField();
         TxtAddress = new javax.swing.JTextField();
         TxtPassword = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        BtnCreateDocSec = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         TxtUserID = new javax.swing.JTextField();
 
@@ -67,11 +67,11 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
 
         jLabel6.setText("Address");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Create new user");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtnCreateDocSec.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        BtnCreateDocSec.setText("Create new user");
+        BtnCreateDocSec.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnCreateDocSecActionPerformed(evt);
             }
         });
 
@@ -88,7 +88,7 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnCreateDocSec, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
@@ -138,14 +138,14 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(TxtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnCreateDocSec, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnCreateDocSecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreateDocSecActionPerformed
         // TODO add your handling code here:
         int userType = CombUserType.getSelectedIndex();
         String tempFirstname = TxtFirstname.getText();
@@ -185,7 +185,7 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
         IDExists = false;
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BtnCreateDocSecActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,13 +224,13 @@ public class CreateDocSecAccount extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCreateDocSec;
     private javax.swing.JComboBox<String> CombUserType;
     private javax.swing.JTextField TxtAddress;
     private javax.swing.JTextField TxtFirstname;
     private javax.swing.JTextField TxtPassword;
     private javax.swing.JTextField TxtSurname;
     private javax.swing.JTextField TxtUserID;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
