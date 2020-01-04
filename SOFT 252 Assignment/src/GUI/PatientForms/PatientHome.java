@@ -86,8 +86,18 @@ public class PatientHome extends javax.swing.JFrame {
         });
 
         BtnViewPrescription.setText("View current prescription");
+        BtnViewPrescription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnViewPrescriptionActionPerformed(evt);
+            }
+        });
 
         BtnViewhistory.setText("View history");
+        BtnViewhistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnViewhistoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -177,6 +187,16 @@ public class PatientHome extends javax.swing.JFrame {
         new PatientViewAppointment(currentID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnviewAppointmentActionPerformed
+
+    private void BtnViewhistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewhistoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnViewhistoryActionPerformed
+
+    private void BtnViewPrescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewPrescriptionActionPerformed
+        // TODO add your handling code here:
+        new PatientViewPrescription(currentID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnViewPrescriptionActionPerformed
 
     /**
      * @param args the command line arguments

@@ -121,11 +121,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="View current prescription"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnViewPrescriptionActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnViewhistory">
       <Properties>
         <Property name="text" type="java.lang.String" value="View history"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnViewhistoryActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
