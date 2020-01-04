@@ -190,6 +190,8 @@ public class PatientHome extends javax.swing.JFrame {
 
     private void BtnViewhistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewhistoryActionPerformed
         // TODO add your handling code here:
+        new PatientViewHistory(currentID).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnViewhistoryActionPerformed
 
     private void BtnViewPrescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewPrescriptionActionPerformed
