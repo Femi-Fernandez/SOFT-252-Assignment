@@ -115,27 +115,103 @@ public class LoginForm extends javax.swing.JFrame {
                     
                     if (firstChar =='A') {
                         new AdminHome(userID).getObj().setVisible(true);
+                        AdminNotificationCheck();
                         this.dispose();
                     }
                     if (firstChar =='D') {
                         new DoctorHome(userID).getObj().setVisible(true);
+                        DocNotificationCheck(userID);
                         this.dispose();
                     }
                     if (firstChar =='P') {
                         new PatientHome(userID).getObj().setVisible(true);
+                        PatientNotificationCheck(userID);
                         this.dispose();
                     }
                     if (firstChar =='S') {
                         new SecretaryHome(userID).getObj().setVisible(true);
+                        SecretaryNotificationCheck();
                         this.dispose();
                     }
                 }
-            }//System.out.println( jsonUser);
+            }
         }
-
         //showMessageDialog(null, "Incorrect Details, please try again.");   
     }//GEN-LAST:event_BtnLoginCheckActionPerformed
 
+    public void DocNotificationCheck(String docID){
+        for (int i = 0; i < SystemDatabase.doctorFeedbackArray.size(); i++) {
+            if (SystemDatabase.doctorFeedbackArray.get(i).getDoctorID().equals(docID)) {
+                if (SystemDatabase.doctorFeedbackArray.get(i).isAdminApproved().equals("approved")) {
+                    showMessageDialog(null, "You have new feedback, please review");
+                    break;
+                }
+            }
+        }
+        for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
+            if (SystemDatabase.appointmentArray.get(i).getDocID().equals(docID)) {
+                if (SystemDatabase.appointmentArray.get(i).getStatus().equals("Verified")) {
+                     showMessageDialog(null, "You have Appointments coming up");
+                     break;
+                }
+            }
+        }
+    }
+    
+    public void AdminNotificationCheck()
+    {
+        for (int i = 0; i < SystemDatabase.doctorFeedbackArray.size(); i++) {
+            if (SystemDatabase.doctorFeedbackArray.get(i).isAdminApproved().equals("unapproved")) {
+                showMessageDialog(null, "You have new feedback to review");
+                break;
+            }
+        }
+    }
+    
+    public void SecretaryNotificationCheck()
+    {
+        for (int i = 0; i < SystemDatabase.medicineArray.size(); i++) {
+            if (SystemDatabase.medicineArray.get(i).getNewMedicine() == true) {
+                showMessageDialog(null, "Some doctors have requested new medicine");
+                break;
+            }
+        }
+             
+        for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
+            if (SystemDatabase.appointmentArray.get(i).getStatus().equals("Unverified")) {
+                showMessageDialog(null, "You have appointments to approve");
+                break;
+            }
+        }
+        
+        if (SystemDatabase.accountRequests != null) {
+            showMessageDialog(null, "You have patient accounts to approve");
+        }
+        
+        if (SystemDatabase.patientDeleteRequest != null) {
+            showMessageDialog(null, "Some patients are requesting their account removal");
+        }
+    }
+    
+    public void PatientNotificationCheck(String patientID)
+    {
+        for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
+            if (SystemDatabase.appointmentArray.get(i).getPatientID().equals(patientID)) {
+                if (SystemDatabase.appointmentArray.get(i).getStatus().equals("verified")) {
+                    showMessageDialog(null, "Your appointment has been approved, please check the date");
+                    break;
+                }
+            }
+        }
+        for (int i = 0; i < SystemDatabase.prescriptionArray.size(); i++) {
+            if (SystemDatabase.prescriptionArray.get(i).getPatientID().equals(patientID)) {
+                if (SystemDatabase.prescriptionArray.get(i).getCompleted() == false) {
+                    showMessageDialog(null, "You have a prescription that you have to pick up");
+                    break;
+                }
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */
