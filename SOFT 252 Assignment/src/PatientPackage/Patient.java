@@ -49,10 +49,6 @@ public class Patient implements IUser{
     public void setUserGender(String userGender) {
         this.userGender = userGender;
     }
-
-    
-    
-
         @Override
     public String getUserFirstname() {
         return userFirstname;
