@@ -274,12 +274,21 @@ public class DoctorCreatePrescription extends javax.swing.JFrame {
         //String medicine, String quantity, String dosage, boolean completed
         Prescription newprescription = new Prescription(doctorID, patientID, doctorNotes, medName, quantity, dosage, completed);
         SystemDatabase.prescriptionArray.add(newprescription);
+        appointmentcomplete(patientID);
         SystemDatabase.savePrescriptionArray();
         showMessageDialog(null, "New prescription created.");
         new DoctorHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnPrescribeMedicineActionPerformed
-
+    public void appointmentcomplete(String patientID)
+    {
+        for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
+            if (SystemDatabase.appointmentArray.get(i).getPatientID().equals(patientID)) {
+                SystemDatabase.appointmentArray.get(i).setStatus("Completed");
+                break;
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */
