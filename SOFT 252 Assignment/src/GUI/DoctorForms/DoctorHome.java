@@ -46,6 +46,7 @@ public class DoctorHome extends javax.swing.JFrame {
         BtnCreateAppointment = new javax.swing.JButton();
         BtnCreatePrescription = new javax.swing.JButton();
         BtnRequestMedicine = new javax.swing.JButton();
+        BtnViewPatientHistory = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +82,13 @@ public class DoctorHome extends javax.swing.JFrame {
             }
         });
 
+        BtnViewPatientHistory.setText("View Patient history");
+        BtnViewPatientHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnViewPatientHistoryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,12 +107,13 @@ public class DoctorHome extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(BtnCreatePrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BtnRequestMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnViewPatientHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(BtnRequestMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +127,9 @@ public class DoctorHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnCreatePrescription, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtnRequestMedicine, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(BtnRequestMedicine, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(BtnViewPatientHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
 
@@ -148,6 +159,12 @@ public class DoctorHome extends javax.swing.JFrame {
         new DoctorCreatePrescription(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnCreatePrescriptionActionPerformed
+
+    private void BtnViewPatientHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewPatientHistoryActionPerformed
+        // TODO add your handling code here:
+        new DoctorViewPatientHistory(currentUserID).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnViewPatientHistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,6 +206,7 @@ public class DoctorHome extends javax.swing.JFrame {
     private javax.swing.JButton BtnCreatePrescription;
     private javax.swing.JButton BtnRequestMedicine;
     private javax.swing.JButton BtnViewAppointments;
+    private javax.swing.JButton BtnViewPatientHistory;
     private javax.swing.JLabel LblTitle;
     // End of variables declaration//GEN-END:variables
 }
