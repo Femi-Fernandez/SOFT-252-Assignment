@@ -29,12 +29,12 @@
                   <Component id="LblTitle" min="-2" pref="380" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jButton2" max="32767" attributes="0"/>
-                          <Component id="jButton3" alignment="1" max="32767" attributes="0"/>
+                          <Component id="BtnViewDoctorRatings" max="32767" attributes="0"/>
+                          <Component id="BtnCreateDocSecAccount" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton1" max="32767" attributes="0"/>
+                          <Component id="BtnRemoveDocSecAccount" max="32767" attributes="0"/>
                           <Component id="BtnSendDoctorFeedback" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -50,13 +50,13 @@
               <Component id="LblTitle" min="-2" pref="44" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton2" pref="39" max="32767" attributes="0"/>
+                  <Component id="BtnViewDoctorRatings" pref="39" max="32767" attributes="0"/>
                   <Component id="BtnSendDoctorFeedback" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton3" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="BtnCreateDocSecAccount" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="BtnRemoveDocSecAccount" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="125" max="32767" attributes="0"/>
           </Group>
@@ -73,28 +73,28 @@
         <Property name="text" type="java.lang.String" value="Welcome, Admin "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="BtnViewDoctorRatings">
       <Properties>
         <Property name="text" type="java.lang.String" value="View Doctor ratings"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnViewDoctorRatingsActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="BtnRemoveDocSecAccount">
       <Properties>
         <Property name="text" type="java.lang.String" value="Remove Doctor/secretary"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnRemoveDocSecAccountActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="BtnCreateDocSecAccount">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create doctor/Secretary Account"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCreateDocSecAccountActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnSendDoctorFeedback">

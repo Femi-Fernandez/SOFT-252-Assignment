@@ -27,6 +27,7 @@ public class DoctorCreatePrescription extends javax.swing.JFrame {
         SetMedCombValues();
         //CombMedName
     }
+    //sets the patient ID combobox values
     public void SetPatCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -39,6 +40,7 @@ public class DoctorCreatePrescription extends javax.swing.JFrame {
             CombPatientID.addItem(value); 
         }
     }  
+    //sets the medicine combobox values
     public void SetMedCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.medicineArray.size(); i++)
@@ -228,7 +230,7 @@ public class DoctorCreatePrescription extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CombPatientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombPatientIDActionPerformed
-        // TODO add your handling code here:
+        // displays patient info in patientinfo text area
         String patID = CombPatientID.getSelectedItem().toString();
         TxtPatientInfo.setText("");
         for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -244,7 +246,7 @@ public class DoctorCreatePrescription extends javax.swing.JFrame {
     }//GEN-LAST:event_CombPatientIDActionPerformed
 
     private void CombMedNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombMedNameActionPerformed
-        // TODO add your handling code here:
+        // displays medicine info in medicine text area
         String medName = CombMedName.getSelectedItem().toString();
         TxtMedInfo.setText("");
         for (int i = 0; i < SystemDatabase.medicineArray.size(); i++) {
@@ -256,13 +258,13 @@ public class DoctorCreatePrescription extends javax.swing.JFrame {
     }//GEN-LAST:event_CombMedNameActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to doctor home page
         new DoctorHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed
 
     private void BtnPrescribeMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrescribeMedicineActionPerformed
-        // TODO add your handling code here:
+        // saves all info into strings 
         String doctorID = currentUserID;
         String patientID = CombPatientID.getSelectedItem().toString();
         String doctorNotes = TxtNotes.getText();
@@ -270,18 +272,22 @@ public class DoctorCreatePrescription extends javax.swing.JFrame {
         String quantity = TxtQuantity.getText();
         String dosage = TxtDosage.getText();
         boolean completed = false;
-        //String doctorID, String patientID, String doctorNotes, 
-        //String medicine, String quantity, String dosage, boolean completed
+        
+        //creates prescription object and adds it to the prescription array
         Prescription newprescription = new Prescription(doctorID, patientID, doctorNotes, medName, quantity, dosage, completed);
         SystemDatabase.prescriptionArray.add(newprescription);
         appointmentcomplete(patientID);
+        //marks the patients appointment as complete and saves prescription and appointment array
         SystemDatabase.savePrescriptionArray();
+        SystemDatabase.saveAppointmentArray();
         showMessageDialog(null, "New prescription created.");
+        // closes form and returns to doctor home page
         new DoctorHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnPrescribeMedicineActionPerformed
     public void appointmentcomplete(String patientID)
     {
+        //finds the patients appointment and marks its status as completed
         for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
             if (SystemDatabase.appointmentArray.get(i).getPatientID().equals(patientID)) {
                 SystemDatabase.appointmentArray.get(i).setStatus("Completed");

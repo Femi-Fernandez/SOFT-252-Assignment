@@ -26,6 +26,7 @@ public class AdminSendDoctorFeedback extends javax.swing.JFrame {
         this.currentUserID = userID;
         SetCombValues();
     }
+    //sets the values for the combobox
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -170,13 +171,13 @@ public class AdminSendDoctorFeedback extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CombDocIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombDocIDActionPerformed
-        // TODO add your handling code here:
+        // sets the text for the label that shows the doictors name
         var temp = SystemDatabase.FindUser(CombDocID.getSelectedItem().toString());
         LblDocName.setText("Dr. " + temp.getUserFirstname() + " " + temp.getUserSurname());
     }//GEN-LAST:event_CombDocIDActionPerformed
 
     private void BtnViewFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewFeedbackActionPerformed
-        // TODO add your handling code here:
+        // fills the textbox with the doctors feedback
         String combValue = CombDocID.getSelectedItem().toString();
         TxtFeedback.setText("");
 
@@ -198,7 +199,7 @@ public class AdminSendDoctorFeedback extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnBackActionPerformed
 
     private void BtnSendFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSendFeedbackActionPerformed
-        // TODO add your handling code here:
+        // updates the doctor feedback and updates its status to approved
         String combValue = CombDocID.getSelectedItem().toString();
         for (int i = 0; i < SystemDatabase.doctorFeedbackArray.size(); i++) {
             if ((SystemDatabase.doctorFeedbackArray.get(i).getDoctorID().equals(combValue)) && ("unapproved".equals(SystemDatabase.doctorFeedbackArray.get(i).isAdminApproved())) ) {

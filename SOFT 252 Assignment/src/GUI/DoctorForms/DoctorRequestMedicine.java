@@ -105,10 +105,11 @@ public class DoctorRequestMedicine extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSendRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSendRequestActionPerformed
-        // TODO add your handling code here:
+        // saves medicine name and saves it to the medicine array
         String newMedName = TxtMedName.getText();
         Medicine medRequest = new Medicine(newMedName, "0", true);
         SystemDatabase.medicineArray.add(medRequest);
+        //saves array, shows notification message and then returns to the doctors home page
         SystemDatabase.saveMedicineArray();
         showMessageDialog(null, "New medicine request created, the secretary should order it in soon.");
         new DoctorHome(currentUserID).setVisible(true);
@@ -116,7 +117,7 @@ public class DoctorRequestMedicine extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSendRequestActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to doctor home page
         new DoctorHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed

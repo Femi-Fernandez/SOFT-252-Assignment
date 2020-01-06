@@ -26,6 +26,7 @@ public class PatientRequestAppointment extends javax.swing.JFrame {
         this.currentID = userID;
         SetCombValues();
     }
+    //sets doctor ID combobox values
         public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -54,7 +55,7 @@ public class PatientRequestAppointment extends javax.swing.JFrame {
         CombDocID = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         TxtDates = new javax.swing.JTextField();
-        BtnCancel1 = new javax.swing.JButton();
+        BtnCancel = new javax.swing.JButton();
         BtnRequestAppointment = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,10 +77,10 @@ public class PatientRequestAppointment extends javax.swing.JFrame {
 
         jLabel3.setText("Dates");
 
-        BtnCancel1.setText("Cancel");
-        BtnCancel1.addActionListener(new java.awt.event.ActionListener() {
+        BtnCancel.setText("Cancel");
+        BtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCancel1ActionPerformed(evt);
+                BtnCancelActionPerformed(evt);
             }
         });
 
@@ -117,7 +118,7 @@ public class PatientRequestAppointment extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(BtnCancel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BtnRequestAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
@@ -139,7 +140,7 @@ public class PatientRequestAppointment extends javax.swing.JFrame {
                     .addComponent(TxtDates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BtnCancel1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(BtnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(BtnRequestAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
         );
@@ -148,41 +149,45 @@ public class PatientRequestAppointment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CombDocIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombDocIDActionPerformed
-        // TODO add your handling code here:
+        // displays the doctors name in a lable
         IUser temp = SystemDatabase.FindUser(CombDocID.getSelectedItem().toString());
         LblDoctorName.setText("Doctor " + temp.getUserFirstname() + " " + temp.getUserSurname());
     }//GEN-LAST:event_CombDocIDActionPerformed
 
-    private void BtnCancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancel1ActionPerformed
-        // TODO add your handling code here:
+    private void BtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelActionPerformed
+        // closes form and returns to patient home page
         new PatientHome(currentID).setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_BtnCancel1ActionPerformed
+    }//GEN-LAST:event_BtnCancelActionPerformed
 
     private void BtnRequestAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRequestAppointmentActionPerformed
-        // TODO add your handling code here:
+        // saves all info as strings
         String docID = CombDocID.getSelectedItem().toString();
         String dates = TxtDates.getText();
         String patientID = currentID;
         String status = "Unverified";
         boolean requestExists = false;
         
+        //if the patient has allready requested an appointment, sets the requestcheck bool as true
         for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
             if (SystemDatabase.appointmentArray.get(i).getPatientID().equals(patientID)) {
                 requestExists = true;
                 break;
             }
         }
+        //id an appointment does nnot exist, creates a new appointment object and saves the array
         if (requestExists = false) {
         Appointment request = new Appointment(docID, patientID, dates, status);
         SystemDatabase.appointmentArray.add(request);
         SystemDatabase.saveAppointmentArray();
         showMessageDialog(null, "Appointment request created");
+        // closes form and returns to patient home page
         new PatientHome(currentID).setVisible(true);
         this.dispose();
         } 
         else 
         {
+            //if the user has requested an appointment, shows a message and closes the form. 
         showMessageDialog(null, "Appointment already requested");
         new PatientHome(currentID).setVisible(true);
         this.dispose();
@@ -226,7 +231,7 @@ public class PatientRequestAppointment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCancel1;
+    private javax.swing.JButton BtnCancel;
     private javax.swing.JButton BtnRequestAppointment;
     private javax.swing.JComboBox<String> CombDocID;
     private javax.swing.JLabel LblDoctorName;

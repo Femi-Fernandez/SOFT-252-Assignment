@@ -25,6 +25,7 @@ public class PatientViewAppointment extends javax.swing.JFrame {
     
     public void loadAppointment()
     {
+        //finds the appointment and displays the info in the textarea
         var temp = SystemDatabase.FindAppointment(currentID);
         var docInfo = SystemDatabase.FindUser(temp.getDocID());
         TxtAreaAppointment.setText(temp.getDocID() + "\n" + docInfo.getUserFirstname()+ "\n" + temp.getDate()+ "\n" + temp.getStatus());

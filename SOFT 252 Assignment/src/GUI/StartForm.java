@@ -73,13 +73,13 @@ public class StartForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnLoginFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginFormActionPerformed
-        // TODO add your handling code here:
+        // opens the login form
         new LoginForm().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnLoginFormActionPerformed
 
     private void BtnRegisterFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegisterFormActionPerformed
-        // TODO add your handling code here:
+        // opens the patient request account form.
         new NewAccountForm().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnRegisterFormActionPerformed

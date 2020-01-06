@@ -25,6 +25,7 @@ public class AdminViewDoctorRatings extends javax.swing.JFrame {
         SetCombValues();
     }
     
+    //sets values for the combobox
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -140,13 +141,13 @@ public class AdminViewDoctorRatings extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CombDocIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombDocIDActionPerformed
-        // TODO add your handling code here:
+        // displays the doctors name when his ID is selected
         var temp = SystemDatabase.FindUser(CombDocID.getSelectedItem().toString());
         LblDocName.setText("Dr. " + temp.getUserFirstname() + " " + temp.getUserSurname());
     }//GEN-LAST:event_CombDocIDActionPerformed
 
     private void BtnViewFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewFeedbackActionPerformed
-        // TODO add your handling code here:
+        // loads the doctors feedback and displays it in the textarea
         String combValue = CombDocID.getSelectedItem().toString();
         TxtAreaFeedbackInfo.setText("");
        
@@ -159,7 +160,8 @@ public class AdminViewDoctorRatings extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnViewFeedbackActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
-        // TODO add your handling code here:
+
+        //opens admin home page
         new AdminHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed

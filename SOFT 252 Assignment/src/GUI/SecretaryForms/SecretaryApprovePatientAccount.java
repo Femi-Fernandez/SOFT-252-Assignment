@@ -24,6 +24,7 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
         this.currentUserID = userID;
         SetCombValues();
     }
+    //sets the requestedPatient combobox values
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.accountRequests.size(); i++) {
@@ -182,7 +183,7 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_CombPatientNameActionPerformed
 
     private void BtnShowRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnShowRequestActionPerformed
-        // TODO add your handling code here:
+        // Displays requested patient info in the patientInfo textArea
         String combValue = CombPatientName.getSelectedItem().toString();
         TxtPatientInfo.setText("");
         
@@ -199,20 +200,24 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnShowRequestActionPerformed
 
     private void BtnCreatePatientAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreatePatientAccountActionPerformed
-        // TODO add your handling code here:
+        // saves combobox value as string
         String combValue = CombPatientName.getSelectedItem().toString();
         outerloop:
          for (int i = 0; i < SystemDatabase.accountRequests.size(); i++) {
+             //if the account request is found in the accountrequest array
             if (SystemDatabase.accountRequests.get(i).getFirstname().equals(combValue)) 
             {
                 String ID = ("P"+ TxtIDNum.getText());
                 for (int j = 0; j < SystemDatabase.userArray.size(); j++) {
+                    //if the id inputted already exists, breaks out of the outer loop,
+                    //this allows the secretary to input another ID
                     if (ID.equals(SystemDatabase.userArray.get(j).getUserID())) {
                         showMessageDialog(null, "ID already exists, please enter a new one.");
                         break outerloop;
                     }
                 }
                 
+                //gets the values from accountrequest and saves them to strings
                 String firstname = SystemDatabase.accountRequests.get(i).getFirstname();
                 String surname = SystemDatabase.accountRequests.get(i).getSurname();
                 String address = SystemDatabase.accountRequests.get(i).getAddress();
@@ -220,9 +225,11 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
                 String age = SystemDatabase.accountRequests.get(i).getAge();
                 String gender = SystemDatabase.accountRequests.get(i).getGender();
                 
+                //runs the userfactory to create a new user and delets the account request
                 UserFactory.getUserType(ID, firstname, surname, address, password, age, gender);
                 SystemDatabase.accountRequests.remove(i);
                 showMessageDialog(null, "New user created with ID: " + ID);
+                //saves all the arrays and returns to secretasry home page
                 SystemDatabase.SaveAccountRequests();
                 SystemDatabase.SaveUserArray();
                 new SecretaryHome(currentUserID).setVisible(true);
@@ -234,13 +241,13 @@ public class SecretaryApprovePatientAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnCreatePatientAccountActionPerformed
 
     private void BtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to Secretary home page
         new SecretaryHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnCancelActionPerformed
 
     private void BtnRefuseAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRefuseAccountActionPerformed
-        // TODO add your handling code here:
+        // finds request in array, removes it, saves array and retuns to secretary home screen
         String combValue = CombPatientName.getSelectedItem().toString();
         
         for (int i = 0; i < SystemDatabase.accountRequests.size(); i++) {

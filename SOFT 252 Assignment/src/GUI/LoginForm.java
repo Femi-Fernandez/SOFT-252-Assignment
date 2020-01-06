@@ -103,13 +103,17 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void BtnLoginCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginCheckActionPerformed
         
+        //this grabs the text from the textboxes and saves them as strings
         String tempUserID = TxtUserID.getText();
         String tempPassword = TxtPassword.getText();
         
+        
         for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
+            //if the string input equals a username in the database...
             if (tempUserID.equals(SystemDatabase.userArray.get(i).getUserID())) {
+                //and the password is the same...
                 if (tempPassword.equals(SystemDatabase.userArray.get(i).getUserPassword())) {
-                    //LOGIN TO CORRECT FORM
+                    //it will go to a home page based on the first character in the ID used. 
                     String userID = SystemDatabase.userArray.get(i).getUserID();
                     char firstChar = userID.charAt(0);
                     
@@ -139,7 +143,9 @@ public class LoginForm extends javax.swing.JFrame {
         //showMessageDialog(null, "Incorrect Details, please try again.");   
     }//GEN-LAST:event_BtnLoginCheckActionPerformed
 
+    
     public void DocNotificationCheck(String docID){
+        //this notifies the doctor when they log in that they have new user feedback
         for (int i = 0; i < SystemDatabase.doctorFeedbackArray.size(); i++) {
             if (SystemDatabase.doctorFeedbackArray.get(i).getDoctorID().equals(docID)) {
                 if (SystemDatabase.doctorFeedbackArray.get(i).isAdminApproved().equals("approved")) {
@@ -148,6 +154,7 @@ public class LoginForm extends javax.swing.JFrame {
                 }
             }
         }
+        //this notifies the doctor when they log in that they have a new appointment scheduled
         for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
             if (SystemDatabase.appointmentArray.get(i).getDocID().equals(docID)) {
                 if (SystemDatabase.appointmentArray.get(i).getStatus().equals("Verified")) {
@@ -160,6 +167,7 @@ public class LoginForm extends javax.swing.JFrame {
     
     public void AdminNotificationCheck()
     {
+        //this notifies the admin when they log in that they have new user feedback to review and send to the doctor
         for (int i = 0; i < SystemDatabase.doctorFeedbackArray.size(); i++) {
             if (SystemDatabase.doctorFeedbackArray.get(i).isAdminApproved().equals("unapproved")) {
                 showMessageDialog(null, "You have new feedback to review");
@@ -170,24 +178,26 @@ public class LoginForm extends javax.swing.JFrame {
     
     public void SecretaryNotificationCheck()
     {
+        //this notifies the secretary when they log in that they have a new medicine request from a doctor
         for (int i = 0; i < SystemDatabase.medicineArray.size(); i++) {
             if (SystemDatabase.medicineArray.get(i).getNewMedicine() == true) {
                 showMessageDialog(null, "Some doctors have requested new medicine");
                 break;
             }
         }
-             
+             //this notifies the secretary when they log in that they have new appointments to approve
         for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
             if (SystemDatabase.appointmentArray.get(i).getStatus().equals("Unverified")) {
                 showMessageDialog(null, "You have appointments to approve");
                 break;
             }
         }
-        
+        //this notifies the secretary when they log in that they have new patient accounts to approve
         if (SystemDatabase.accountRequests != null) {
             showMessageDialog(null, "You have patient accounts to approve");
         }
         
+        //this notifies the secretary when they log in that they have a new request from a patient for their accounts deletion
         if (SystemDatabase.patientDeleteRequest != null) {
             showMessageDialog(null, "Some patients are requesting their account removal");
         }
@@ -195,6 +205,7 @@ public class LoginForm extends javax.swing.JFrame {
     
     public void PatientNotificationCheck(String patientID)
     {
+        //this notifies the patient when they log in that their appointment has been confirmed
         for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
             if (SystemDatabase.appointmentArray.get(i).getPatientID().equals(patientID)) {
                 if (SystemDatabase.appointmentArray.get(i).getStatus().equals("verified")) {
@@ -203,6 +214,7 @@ public class LoginForm extends javax.swing.JFrame {
                 }
             }
         }
+        //this notifies the patient when they log in that they have a prescription to recieve
         for (int i = 0; i < SystemDatabase.prescriptionArray.size(); i++) {
             if (SystemDatabase.prescriptionArray.get(i).getPatientID().equals(patientID)) {
                 if (SystemDatabase.prescriptionArray.get(i).getCompleted() == false) {

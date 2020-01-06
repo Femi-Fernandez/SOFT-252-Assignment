@@ -27,6 +27,7 @@ public class PatientHome extends javax.swing.JFrame {
         LblTitle.setText("Welcome, " + SystemDatabase.FindUser(currentID).getUserFirstname());
     }
     
+    //makes sure that only one patient home form is opened
     public static PatientHome getObj()
     {
         if (obj == null) {
@@ -159,19 +160,22 @@ public class PatientHome extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRequestAppointmentActionPerformed
 
     private void BtnRequestDeletionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRequestDeletionActionPerformed
-        // TODO add your handling code here:
+        // shows a warning message before sending off the warning message
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog (null, "are you sure you want to request account termination?","Warning",dialogButton);
         boolean IDExists = false;
         if (dialogResult == JOptionPane.YES_OPTION) {
+            //if yes is selected, it checks if the user has allready requested their account to be deleted
+            //if it has, shows a message saying their request has already gone through before
             for (int i = 0; i < SystemDatabase.patientDeleteRequest.size(); i++) {
                 if (SystemDatabase.patientDeleteRequest.get(i).equals(currentID)) {
-                System.out.println("Already exists");
+                System.out.println("You have allreayd requested account deletion, please be patient");
                 IDExists = true;
                 break;
                 }
             }
             if (IDExists != true) {
+                //if the ID does not exist, it adds the current ID to the deletion request array
             SystemDatabase.patientDeleteRequest.add(currentID);
             SystemDatabase.saveDeleteRequestArray();
             } else
@@ -183,19 +187,19 @@ public class PatientHome extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRequestDeletionActionPerformed
 
     private void BtnviewAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnviewAppointmentActionPerformed
-        // TODO add your handling code here:
+        // opens the view appointment form
         new PatientViewAppointment(currentID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnviewAppointmentActionPerformed
 
     private void BtnViewhistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewhistoryActionPerformed
-        // TODO add your handling code here:
+        // opens view history form
         new PatientViewHistory(currentID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnViewhistoryActionPerformed
 
     private void BtnViewPrescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewPrescriptionActionPerformed
-        // TODO add your handling code here:
+        // opens view prescription array
         new PatientViewPrescription(currentID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnViewPrescriptionActionPerformed

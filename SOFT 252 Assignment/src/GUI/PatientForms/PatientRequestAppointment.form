@@ -54,7 +54,7 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="BtnCancel1" min="-2" pref="170" max="-2" attributes="0"/>
+              <Component id="BtnCancel" min="-2" pref="170" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="BtnRequestAppointment" min="-2" pref="162" max="-2" attributes="0"/>
               <EmptySpace pref="33" max="32767" attributes="0"/>
@@ -80,7 +80,7 @@
               </Group>
               <EmptySpace pref="102" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="BtnCancel1" pref="36" max="32767" attributes="0"/>
+                  <Component id="BtnCancel" pref="36" max="32767" attributes="0"/>
                   <Component id="BtnRequestAppointment" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -129,12 +129,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="TxtDates">
     </Component>
-    <Component class="javax.swing.JButton" name="BtnCancel1">
+    <Component class="javax.swing.JButton" name="BtnCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCancel1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnCancelActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="BtnRequestAppointment">

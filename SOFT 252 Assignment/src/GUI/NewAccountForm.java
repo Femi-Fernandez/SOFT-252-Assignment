@@ -43,7 +43,7 @@ public class NewAccountForm extends javax.swing.JFrame {
         TxtAge = new javax.swing.JTextField();
         TxtGender = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BtnRequestAccount = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         TxtPassword = new javax.swing.JTextField();
 
@@ -64,10 +64,10 @@ public class NewAccountForm extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel6.setText("Request new account");
 
-        jButton1.setText("Request new account");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtnRequestAccount.setText("Request new account");
+        BtnRequestAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtnRequestAccountActionPerformed(evt);
             }
         });
 
@@ -106,7 +106,7 @@ public class NewAccountForm extends javax.swing.JFrame {
                                     .addComponent(TxtSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(TxtFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(TxtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(jButton1))
+                        .addComponent(BtnRequestAccount))
                     .addComponent(jLabel6))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
@@ -142,14 +142,15 @@ public class NewAccountForm extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(BtnRequestAccount)
                 .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BtnRequestAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRequestAccountActionPerformed
+        //this grabs the data from the text boxes and saves them as strings
         String tempFirstname = TxtFirstname.getText();
         String tempSirname = TxtSurname.getText();
         String tempAddress = TxtAddress.getText();
@@ -157,9 +158,11 @@ public class NewAccountForm extends javax.swing.JFrame {
         String tempAge = TxtAge.getText();
         String tempGender = TxtGender.getText();
         
+        //if the userarray is empty, the first user becomes the admin
         if (SystemDatabase.userArray.isEmpty()) {
             UserFactory.getUserType("A"+ String.format("%04d", 0), tempFirstname, tempSirname, tempAddress, tempPassword, tempGender, tempGender);          
         } else {
+            //if the array allready has users, a new account request is created and saved for the secretary to confirm.
             AccountRequest newAccountRequest = new AccountRequest(tempFirstname, tempSirname, tempAddress, tempPassword, tempAge, tempGender);
             SystemDatabase.accountRequests.add(newAccountRequest);
             SystemDatabase.SaveAccountRequests();
@@ -168,7 +171,7 @@ public class NewAccountForm extends javax.swing.JFrame {
         
         //AccountRequest newAccountRequest = new AccountRequest(tempFirstname, tempSirname, tempAddress, tempPassword, tempAge, tempGender);
         //SystemDatabase.accountRequests.add(newAccountRequest);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BtnRequestAccountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,13 +209,13 @@ public class NewAccountForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnRequestAccount;
     private javax.swing.JTextField TxtAddress;
     private javax.swing.JTextField TxtAge;
     private javax.swing.JTextField TxtFirstname;
     private javax.swing.JTextField TxtGender;
     private javax.swing.JTextField TxtPassword;
     private javax.swing.JTextField TxtSurname;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

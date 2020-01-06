@@ -25,6 +25,7 @@ public class DoctorCreateAppointment extends javax.swing.JFrame {
         this.currentUserID = userID;
         SetCombValues();
     }
+    //sets combo values as patient ID's
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -156,7 +157,7 @@ public class DoctorCreateAppointment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CombPatientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombPatientIDActionPerformed
-        // TODO add your handling code here:
+        // displays patient info in textarea
         String patID = CombPatientID.getSelectedItem().toString();
         TxtPatientInfo.setText("");
         for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -171,7 +172,7 @@ public class DoctorCreateAppointment extends javax.swing.JFrame {
     }//GEN-LAST:event_CombPatientIDActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to doctor home page
         new DoctorHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed

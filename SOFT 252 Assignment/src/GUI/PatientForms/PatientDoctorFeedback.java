@@ -26,7 +26,7 @@ public class PatientDoctorFeedback extends javax.swing.JFrame {
         this.currentID = userID;
         SetCombValues();
     }
-
+//sets the doctorID combobox values
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -166,15 +166,17 @@ public class PatientDoctorFeedback extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSubmitFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSubmitFeedbackActionPerformed
-        // TODO add your handling code here:
+        //saves text boxes and combobox values as strings
         String docID = CombDocID.getSelectedItem().toString();
         String rating = CombRating.getSelectedItem().toString();
         String feedback = TxtFeedback.getText();
         String adminApproved = "unapproved";
-        
+        //creates new doctorfeedback object and adds it to the doctorfeedback arra
         DoctorFeedback tempFeedback = new DoctorFeedback(docID, rating, feedback, adminApproved);
         SystemDatabase.doctorFeedbackArray.add(tempFeedback);
         showMessageDialog(null, "Feedback created");
+        
+        //saves foctorfeedback array and returns to the patient home screen
         SystemDatabase.saveDoctorFeedback();
         new PatientHome(currentID).setVisible(true);
         this.dispose();
@@ -187,7 +189,7 @@ public class PatientDoctorFeedback extends javax.swing.JFrame {
     }//GEN-LAST:event_CombDocIDActionPerformed
 
     private void BtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to patient home page
         new PatientHome(currentID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnCancelActionPerformed

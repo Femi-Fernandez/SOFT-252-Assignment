@@ -26,6 +26,7 @@ public class DoctorHome extends javax.swing.JFrame {
         LblTitle.setText("Welcome, " + SystemDatabase.FindUser(currentUserID).getUserFirstname());
     }
 
+    //makes sure only one doctor home form is opened on login
     public static DoctorHome getObj()
     {
         if (obj == null) {
@@ -137,31 +138,31 @@ public class DoctorHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnViewAppointmentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewAppointmentsActionPerformed
-        // TODO add your handling code here:
+        // opens view appointments form
         new DoctorViewAppointments(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnViewAppointmentsActionPerformed
 
     private void BtnCreateAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreateAppointmentActionPerformed
-        // TODO add your handling code here:
+        // opens create appointment form
         new DoctorCreateAppointment(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnCreateAppointmentActionPerformed
 
     private void BtnRequestMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRequestMedicineActionPerformed
-        // TODO add your handling code here:
+        // opens request medicine form
         new DoctorRequestMedicine(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnRequestMedicineActionPerformed
 
     private void BtnCreatePrescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreatePrescriptionActionPerformed
-        // TODO add your handling code here:
+        // opens create prescription form
         new DoctorCreatePrescription(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnCreatePrescriptionActionPerformed
 
     private void BtnViewPatientHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewPatientHistoryActionPerformed
-        // TODO add your handling code here:
+        // opens view paitient history form
         new DoctorViewPatientHistory(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnViewPatientHistoryActionPerformed

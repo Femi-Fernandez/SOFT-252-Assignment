@@ -23,6 +23,7 @@ public class DoctorViewAppointments extends javax.swing.JFrame {
         loadAppointments();
     }
     
+    //displays info in textarea based on selected combobox value
     public void loadAppointments()
     {
         String combStatus = CombStatus.getSelectedItem().toString();
@@ -120,7 +121,7 @@ public class DoctorViewAppointments extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to doctor home page
         new DoctorHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed

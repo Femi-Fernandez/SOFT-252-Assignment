@@ -23,6 +23,7 @@ public class PatientViewPrescription extends javax.swing.JFrame {
     
     public void fillPrescriptionInfo()
     {
+        //grabs the prescription info for the patient and displays it in the textarea
         for (int i = 0; i < SystemDatabase.prescriptionArray.size(); i++) {
             if (SystemDatabase.prescriptionArray.get(i).getPatientID().equals(currentID)) {
                 TxtPrescriptionInfo.setText(SystemDatabase.prescriptionArray.get(i).getDoctorID() +"\n"

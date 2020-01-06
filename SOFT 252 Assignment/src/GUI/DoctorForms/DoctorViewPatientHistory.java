@@ -24,6 +24,7 @@ public class DoctorViewPatientHistory extends javax.swing.JFrame {
         //CombPatientID
         SetPatientCombValues();
     }
+    //sets patient combobox values
 public void SetPatientCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -141,8 +142,8 @@ public void SetPatientCombValues(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void CombPatientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombPatientIDActionPerformed
-        // TODO add your handling code here:
         
+        //displays information in patient textarea
         String patientID = CombPatientID.getSelectedItem().toString();
         TxtPatientInfo.setText("");
         for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -160,6 +161,7 @@ public void SetPatientCombValues(){
 
     public void txtPrecritpionInfoFill(String patientID)
     {
+        //fills prescription textarea
         TxtPrescriptionInfo.setText("");
         for (int i = 0; i < SystemDatabase.prescriptionArray.size(); i++) {
             if (SystemDatabase.prescriptionArray.get(i).getPatientID().equals(patientID)) {
@@ -168,8 +170,8 @@ public void SetPatientCombValues(){
                                           + SystemDatabase.prescriptionArray.get(i).getMedicine() + ", quantity: "
                                           + SystemDatabase.prescriptionArray.get(i).getQuantity() +"\n"
                                           + SystemDatabase.prescriptionArray.get(i).getDosage() + "\n Completed: "
-                                          + SystemDatabase.prescriptionArray.get(i).getCompleted());
-                                            break;
+                                          + SystemDatabase.prescriptionArray.get(i).getCompleted() + "\n\n");
+                                           
             }
             
         }

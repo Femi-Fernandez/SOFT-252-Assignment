@@ -24,6 +24,7 @@ public class SecretaryAppointmentRequests extends javax.swing.JFrame {
         this.currentUserID = userID;
         SetCombValues();
     }
+    //sets the patient ID combobox values
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
@@ -173,7 +174,7 @@ public class SecretaryAppointmentRequests extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnViewAppointmentRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewAppointmentRequestActionPerformed
-        // TODO add your handling code here:
+        //saves the patient id into a string, and resets the textarea's contents
         String patientID =  CombPatientID.getSelectedItem().toString();
         TxtAppointmentInfo.setText("");
         LblRequestedDate.setText("");
@@ -181,10 +182,11 @@ public class SecretaryAppointmentRequests extends javax.swing.JFrame {
         for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) 
         {
             if (SystemDatabase.appointmentArray.get(i).getPatientID().equals(patientID)) {
-
+                //grabs the doctors ID from the appointment and saves them
                 String DocID = SystemDatabase.appointmentArray.get(i).getDocID();
                 var doctor = SystemDatabase.FindUser(DocID);
                 var patient = SystemDatabase.FindUser(patientID);
+                //displays all the appointment information in the appointmentinfo text area
                 TxtAppointmentInfo.setText(DocID + "\n" + doctor.getUserFirstname() + "\n" +
                                        doctor.getUserSurname() + "\n" +
                                        SystemDatabase.appointmentArray.get(i).getStatus() + "\n \n" +
@@ -201,13 +203,13 @@ public class SecretaryAppointmentRequests extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnViewAppointmentRequestActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to Secretary home page
         new SecretaryHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed
 
     private void BtnRefuseAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRefuseAppointmentActionPerformed
-        // TODO add your handling code here:
+        // fidns the appointment in the array and removes it from it, then saves the array
         String patientID =  CombPatientID.getSelectedItem().toString();
         
         for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) 
@@ -217,6 +219,7 @@ public class SecretaryAppointmentRequests extends javax.swing.JFrame {
                 SystemDatabase.appointmentArray.remove(i);
                 showMessageDialog(null, "Appointment request denied, request deleted");
                 SystemDatabase.saveAppointmentArray();
+                // closes form and returns to Secretary home page
                 new SecretaryHome(currentUserID).setVisible(true);
                 this.dispose();               
                 break;
@@ -225,7 +228,7 @@ public class SecretaryAppointmentRequests extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRefuseAppointmentActionPerformed
 
     private void BtnApproveAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnApproveAppointmentActionPerformed
-        // TODO add your handling code here:
+        //  finds the appointment, updates all the info in it and sets its status as verified
         String patientID = CombPatientID.getSelectedItem().toString();
         for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) 
         {
@@ -237,8 +240,10 @@ public class SecretaryAppointmentRequests extends javax.swing.JFrame {
                 SystemDatabase.appointmentArray.get(i).setStatus(status);
                 SystemDatabase.saveAppointmentArray();
                 showMessageDialog(null, "Appointment approved and created");
+                // closes form and returns to Secretary home page
                 new SecretaryHome(currentUserID).setVisible(true);
                 this.dispose();
+                break;
             }
         }
     }//GEN-LAST:event_BtnApproveAppointmentActionPerformed

@@ -26,6 +26,7 @@ public class RemoveDocSecAccount extends javax.swing.JFrame {
         
             SetCombValues();
     }
+    //sets the values for the combovalues
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -149,7 +150,7 @@ public class RemoveDocSecAccount extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnFindDocSecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFindDocSecActionPerformed
-        // TODO add your handling code here:
+        // displays a doctor or secretary's info
            String value= CombDocSecSelect.getSelectedItem().toString();
            
            IUser temp = SystemDatabase.FindUser(value);
@@ -166,7 +167,7 @@ public class RemoveDocSecAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_CombDocSecSelectActionPerformed
 
     private void BtnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoveActionPerformed
-        // TODO add your handling code here:
+        // finds the selected userID in the user array and removes it, then saves and returns to the admin home
         String value= CombDocSecSelect.getSelectedItem().toString();
         SystemDatabase.RemoveUser(value);
         SystemDatabase.SaveUserArray();
@@ -176,7 +177,7 @@ public class RemoveDocSecAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnRemoveActionPerformed
 
     private void BtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelActionPerformed
-        // TODO add your handling code here:
+        // closes the form and returns to the admin home page
         new AdminHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnCancelActionPerformed

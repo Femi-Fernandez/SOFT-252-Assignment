@@ -25,6 +25,7 @@ public class PatientViewHistory extends javax.swing.JFrame {
     }
     public void AppointmentFillInfo()
     {
+        //shows  all the patients appointment history
         for (int i = 0; i < SystemDatabase.appointmentArray.size(); i++) {
             if (SystemDatabase.appointmentArray.get(i).getPatientID().equals(currentID)) 
             {
@@ -38,6 +39,7 @@ public class PatientViewHistory extends javax.swing.JFrame {
     
     public void prescriptionFillInfo()
     {
+        //shows all the patients precription history
         for (int i = 0; i < SystemDatabase.prescriptionArray.size(); i++) {
             if (SystemDatabase.prescriptionArray.get(i).getPatientID().equals(currentID)) 
             {
