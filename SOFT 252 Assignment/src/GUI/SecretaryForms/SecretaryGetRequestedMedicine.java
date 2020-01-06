@@ -24,6 +24,7 @@ public class SecretaryGetRequestedMedicine extends javax.swing.JFrame {
         this.currentUserID = userID;
         SetCombValues();
     }
+    //sets requestedmedicine combobox values
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.medicineArray.size(); i++) 
@@ -137,15 +138,18 @@ public class SecretaryGetRequestedMedicine extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnBackActionPerformed
 
     private void BtnGetMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGetMedicineActionPerformed
-        // TODO add your handling code here:
+        // saves the quantity of medicine ordered as string
         String medQuantity = TxtQuantity.getText();
         
+        //finds the new medicine, sets its status as new to false and updates its stock 
         for (int i = 0; i < SystemDatabase.medicineArray.size(); i++) {
             if (SystemDatabase.medicineArray.get(i).getMedicineName().equals(CombMedName.getSelectedItem().toString())) {
                 SystemDatabase.medicineArray.get(i).setNewMedicine(false);
                 SystemDatabase.medicineArray.get(i).setStock(medQuantity);
+                //saves medicine array and notifies user that their medicine has been ordered
                 SystemDatabase.saveMedicineArray();
                 showMessageDialog(null, "Requested medicine ordered in");
+                // closes form and returns to Secretary home page
                 new SecretaryHome(currentUserID).setVisible(true);
                 this.dispose();
                 

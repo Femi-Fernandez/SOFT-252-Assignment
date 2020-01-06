@@ -25,6 +25,7 @@ public class SecretaryHome extends javax.swing.JFrame {
         LblTitle.setText("Welcome, " + SystemDatabase.FindUser(currentUserID).getUserFirstname());
     }
 
+    //makes sure only one form opens when it is loaded
      public static SecretaryHome getObj()
     {
         if (obj == null) {

@@ -26,6 +26,7 @@ public class SecretaryGivePrescription extends javax.swing.JFrame {
         SetCombValues();
     }
 
+    //sets the patient ID combobox values
     public void SetCombValues()
     {
     ArrayList<String> a = new ArrayList<String>();
@@ -137,9 +138,10 @@ public class SecretaryGivePrescription extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CombPatientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombPatientIDActionPerformed
-        // TODO add your handling code here:
+        // saves patient ID to string
         String patientID = CombPatientID.getSelectedItem().toString();
         
+        //dumps the user's prescription info into the prescriptionInfo textarea 
         for (int i = 0; i < SystemDatabase.prescriptionArray.size(); i++) {
             if (SystemDatabase.prescriptionArray.get(i).getPatientID().equals(patientID)) {
                 TxtPrescriptionInfo.setText(SystemDatabase.prescriptionArray.get(i).getPatientID() + "\n"
@@ -156,27 +158,33 @@ public class SecretaryGivePrescription extends javax.swing.JFrame {
     }//GEN-LAST:event_CombPatientIDActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to Secretary home page
         new SecretaryHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed
 
     private void BtnGivePrescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGivePrescriptionActionPerformed
-        // TODO add your handling code here:
+        // saves patient ID from combobox to a string
         String patientID = CombPatientID.getSelectedItem().toString();
         
         for (int i = 0; i < SystemDatabase.prescriptionArray.size(); i++) 
         {
+            //finds the prescription in the array
             if (SystemDatabase.prescriptionArray.get(i).getPatientID().equals(patientID))
             {
+                //gets the stock of the medicine on the prescription
                 int medStock = findMedAmount(SystemDatabase.prescriptionArray.get(i).getMedicine());
                 
+                //if the prescription would become out of stock when handed to the patient...
+                //displays message saying not enough stock and retuns to secretary home page
                 if ((medStock - Integer.parseInt(SystemDatabase.prescriptionArray.get(i).getQuantity())) < 0) {
                     showMessageDialog(null, "medicine not in stock, please notify paitent and order more");
                     new SecretaryHome(currentUserID).setVisible(true);
                     this.dispose();
+                    break;
                 } else 
                 {
+                    //if medicine is in stock and updates quantity, saves prescription and medicine array
                     int medPos = findMedPos(SystemDatabase.prescriptionArray.get(i).getMedicine());
                     
                     SystemDatabase.medicineArray.get(medPos).setStock( Integer.toString(medStock - Integer.parseInt(SystemDatabase.prescriptionArray.get(i).getQuantity())));
@@ -184,6 +192,7 @@ public class SecretaryGivePrescription extends javax.swing.JFrame {
                     
                     SystemDatabase.savePrescriptionArray();
                     SystemDatabase.saveMedicineArray();
+                    //shows messages saying prescription completed, and returns to secretary main menu
                     showMessageDialog(null, "Prescription completed and handed to patient");
                     new SecretaryHome(currentUserID).setVisible(true);
                     this.dispose();
@@ -196,6 +205,7 @@ public class SecretaryGivePrescription extends javax.swing.JFrame {
 
     public int findMedAmount(String medName)
     {
+        //finds the stock of medicine in database and returns value as int
         for (int i = 0; i < SystemDatabase.medicineArray.size(); i++) 
         {
             if (SystemDatabase.medicineArray.get(i).getMedicineName().equals(medName))
@@ -209,6 +219,7 @@ public class SecretaryGivePrescription extends javax.swing.JFrame {
     public int findMedPos(String medName){
     for (int i = 0; i < SystemDatabase.medicineArray.size(); i++) 
         {
+            //finds where the medicine is in the medicine array and returns its position
             if (SystemDatabase.medicineArray.get(i).getMedicineName().equals(medName))
             {
                 return i;

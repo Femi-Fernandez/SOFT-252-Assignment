@@ -26,6 +26,7 @@ public class SecretaryRestockMed extends javax.swing.JFrame {
         SetCombValues();
     }
     
+    //fills shoemed textarea with medicine info
     public void txtAreaFill()
     {
         for (int i = 0; i < SystemDatabase.medicineArray.size(); i++) {
@@ -34,6 +35,8 @@ public class SecretaryRestockMed extends javax.swing.JFrame {
                              + SystemDatabase.medicineArray.get(i).getStock() + "\n");
         }
     }
+    
+    //sets mecicine combobox values
  public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.medicineArray.size(); i++) {
@@ -156,20 +159,24 @@ public class SecretaryRestockMed extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to Secretary home page
          new SecretaryHome(currentUserID).setVisible(true);
          this.dispose();
     }//GEN-LAST:event_BtnCancelActionPerformed
 
     private void BtnOrderMedsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnOrderMedsActionPerformed
-        // TODO add your handling code here:
+        //gets selected medicine and quantity and saves them as strings
         String combValue = CombMed.getSelectedItem().toString();
-        String stockValue = TxtQuantity.getText();
-        
+        int stockValue = Integer.parseInt(TxtQuantity.getText());
+       
         for (int i = 0; i < SystemDatabase.medicineArray.size(); i++) {
             if (SystemDatabase.medicineArray.get(i).getMedicineName().equals(combValue)) {
-                SystemDatabase.medicineArray.get(i).setStock(stockValue);
+                
+                //adds current stock to requested new amount
+                int currentStock = Integer.parseInt(SystemDatabase.medicineArray.get(i).getStock());
+                SystemDatabase.medicineArray.get(i).setStock(Integer.toString(stockValue+currentStock));
                 showMessageDialog(null, "ordered required amount of medicine");
+                //saves medicine array and returns to secretary main form
                 SystemDatabase.saveMedicineArray();
                 new SecretaryHome(currentUserID).setVisible(true);
                 this.dispose();               

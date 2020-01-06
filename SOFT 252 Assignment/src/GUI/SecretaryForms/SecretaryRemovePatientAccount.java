@@ -24,6 +24,7 @@ public class SecretaryRemovePatientAccount extends javax.swing.JFrame {
         this.currentUserID = userID;
         SetCombValues();
     }
+    //sets the patient ID combobox values
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -135,7 +136,7 @@ public class SecretaryRemovePatientAccount extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnViewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewPatientActionPerformed
-        // TODO add your handling code here:
+        // fills patientInfo textarea with the selected patients info
         String combValue = CombPatientID.getSelectedItem().toString();
         TxtPatientInfo.setText("");
         
@@ -152,13 +153,13 @@ public class SecretaryRemovePatientAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnViewPatientActionPerformed
 
     private void BtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to Secretary home page
         new SecretaryHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnCancelActionPerformed
 
     private void BtnRemovePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemovePatientActionPerformed
-        // TODO add your handling code here:
+        // removes the selected patient, notifies the user it has been deleted and returns to the secretary main form
         String combValue = CombPatientID.getSelectedItem().toString();
         for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
             if (SystemDatabase.userArray.get(i).getUserID().equals(combValue)) {

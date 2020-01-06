@@ -24,6 +24,7 @@ public class SecretaryPatientRequestRemoval extends javax.swing.JFrame {
         this.currentUserID = userID;
         SetCombValues();
     }
+    //sets the patientID combobox values
     public void SetCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.patientDeleteRequest.size(); i++) {
@@ -138,7 +139,7 @@ public class SecretaryPatientRequestRemoval extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnViewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnViewPatientActionPerformed
-        // TODO add your handling code here:
+        // fills the patientinfo textarea with the patients info  
         String combValue = CombPatientID.getSelectedItem().toString();
         TxtPatientInfo.setText("");
         
@@ -155,13 +156,13 @@ public class SecretaryPatientRequestRemoval extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnViewPatientActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to Secretary home page
         new SecretaryHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed
 
     private void BtnRemoveUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRemoveUserActionPerformed
-        // TODO add your handling code here:
+        // finds the user, removes them from the user array and the request array
         String combValue = CombPatientID.getSelectedItem().toString();
         for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
             if (SystemDatabase.userArray.get(i).getUserID().equals(combValue)) {
@@ -174,6 +175,7 @@ public class SecretaryPatientRequestRemoval extends javax.swing.JFrame {
                     }
                 }
                 
+                //notifies user that the account was deleted, saves the array and returns to the secretary home form
                 showMessageDialog(null, "Requested Patient account has been deleted");
                 SystemDatabase.SaveUserArray();
                 SystemDatabase.saveDeleteRequestArray();

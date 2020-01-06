@@ -9,6 +9,8 @@ package DatabasePackage;
  *
  * @author afernandez
  */
+
+//interface for all the users. userGender and userAge is only used by the patient
 public interface IUser {
     String userID = "";
     String userFirstname = "";

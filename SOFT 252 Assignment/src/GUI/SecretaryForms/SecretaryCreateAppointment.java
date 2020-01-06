@@ -26,6 +26,7 @@ public class SecretaryCreateAppointment extends javax.swing.JFrame {
         SetDocCombValues();
         SetPatCombValues();
     }
+    //sets the doctor combobox values
     public void SetDocCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -38,6 +39,7 @@ public class SecretaryCreateAppointment extends javax.swing.JFrame {
             CombDoctorID.addItem(value); 
         }
     }
+    //sets the patient combobox values
     public void SetPatCombValues(){
         ArrayList<String> a = new ArrayList<String>();
             for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -190,28 +192,31 @@ public class SecretaryCreateAppointment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCreateAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCreateAppointmentActionPerformed
-        // TODO add your handling code here:
+        // saves combobox values and date to strings
         String date = TxtDate.getText();
         String docID = CombDoctorID.getSelectedItem().toString();
         String patID = CombPatientID.getSelectedItem().toString();
         String status = "Verified";
         
+        //creates a new appointment object and saves it to the appointment array
         Appointment request = new Appointment(docID, patID, date, status);
         SystemDatabase.appointmentArray.add(request);
+        //saves the aoopintment array and notifies user the appointment was created
         SystemDatabase.saveAppointmentArray();
         showMessageDialog(null, "New appointment created");
+        // closes form and returns to Secretary home page
         new SecretaryHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnCreateAppointmentActionPerformed
 
     private void BtnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBackActionPerformed
-        // TODO add your handling code here:
+        // closes form and returns to Secretary home page
         new SecretaryHome(currentUserID).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnBackActionPerformed
 
     private void CombDoctorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombDoctorIDActionPerformed
-        // TODO add your handling code here:
+        //fills doctorInfo textarea with the selected doctors info
         String docID = CombDoctorID.getSelectedItem().toString();
         TxtDoctorInfo.setText("");
         for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
@@ -224,7 +229,7 @@ public class SecretaryCreateAppointment extends javax.swing.JFrame {
     }//GEN-LAST:event_CombDoctorIDActionPerformed
 
     private void CombPatientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombPatientIDActionPerformed
-        // TODO add your handling code here:
+        // fills patientInfo textarea with the selected patients info
         String patID = CombPatientID.getSelectedItem().toString();
         TxtPatientInfo.setText("");
         for (int i = 0; i < SystemDatabase.userArray.size(); i++) {
