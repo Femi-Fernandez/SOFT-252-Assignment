@@ -33,7 +33,7 @@ public class DoctorViewAppointments extends javax.swing.JFrame {
             if ((SystemDatabase.appointmentArray.get(i).getDocID().equals(currentUserID)) && SystemDatabase.appointmentArray.get(i).getStatus().equals(combStatus)) {
                 //var temp = SystemDatabase.FindAppointment(currentUserID);
                 var patientInfo = SystemDatabase.FindUser(SystemDatabase.appointmentArray.get(i).getPatientID());
-                TxtAppointmentsInfo.setText("\n\n" + TxtAppointmentsInfo.getText()+ patientInfo.getUserFirstname() + "\n" +
+                TxtAppointmentsInfo.setText(TxtAppointmentsInfo.getText()+ patientInfo.getUserFirstname() + "\n" +
                                             patientInfo.getUserSurname() + "\n" +
                                             patientInfo.getUserAge() + "\n"+
                                             SystemDatabase.appointmentArray.get(i).getDate() + "\n" +

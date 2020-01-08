@@ -1,0 +1,1 @@
+[{"dosage":"one every 6 hours when trying to\nstudy","quantity":"10","patientID":"P0004","docID":"D0001","doctorNotes":"Patient described as having low \nattention span, has tried exercise\nand change of diet to no avail.","completed":true,"medicineName":"Adderall, 10mg"}]
