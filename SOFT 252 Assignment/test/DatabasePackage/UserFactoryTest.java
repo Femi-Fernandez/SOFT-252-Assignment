@@ -19,12 +19,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserFactoryTest {
     
     public UserFactoryTest() {
-        System.out.println("here");
     }
     
     @BeforeAll
     public static void setUpClass() {
-        System.out.println("here");
     }
     
     @AfterAll
@@ -41,8 +39,7 @@ public class UserFactoryTest {
 
     @Test
     public void testGetUserType() {
-        fail("Test not yet implemented"); 
-        System.out.println("here");
+        fail("Test not yet implemented");
     }
     
 }

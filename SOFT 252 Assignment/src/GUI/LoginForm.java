@@ -193,12 +193,12 @@ public class LoginForm extends javax.swing.JFrame {
             }
         }
         //this notifies the secretary when they log in that they have new patient accounts to approve
-        if (SystemDatabase.accountRequests != null) {
+        if (SystemDatabase.accountRequests.size() > 0) {
             showMessageDialog(null, "You have patient accounts to approve");
         }
         
         //this notifies the secretary when they log in that they have a new request from a patient for their accounts deletion
-        if (SystemDatabase.patientDeleteRequest != null) {
+        if (SystemDatabase.patientDeleteRequest.size() > 0) {
             showMessageDialog(null, "Some patients are requesting their account removal");
         }
     }

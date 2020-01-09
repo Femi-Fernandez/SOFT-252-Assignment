@@ -82,6 +82,12 @@ public class SecretaryRestockMed extends javax.swing.JFrame {
 
         jLabel2.setText("Current medicine stock");
 
+        CombMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CombMedActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Medicine to order:");
 
         jLabel4.setText("Quantity:");
@@ -186,6 +192,10 @@ public class SecretaryRestockMed extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_BtnOrderMedsActionPerformed
+
+    private void CombMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombMedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CombMedActionPerformed
 
     /**
      * @param args the command line arguments
